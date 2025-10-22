@@ -351,27 +351,37 @@
         }
 
         /* Liste des derniers posts (Accueil) */
+        /* Liste des derniers posts (Accueil) */
         .home-list {
-            display: grid;
-            gap: 10px;
+            display: block;
+            margin: 4px 0;
+            padding: 0;
         }
 
         .home-list a {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 12px;
-            border: 1px solid #1a1f44;
-            background: rgba(255, 255, 255, .02);
-            border-radius: 12px;
+            display: block;
+            padding: 8px 0;
+            border: 0;
+            /* plus de contour par item */
+            background: transparent;
+            /* plus de fond par item */
+            border-radius: 0;
             font-weight: 800;
             color: #eaf0ff;
+            text-decoration: none;
+        }
+
+        .home-list a+a {
+            border-top: 1px dashed rgba(255, 255, 255, .12);
+            /* simple séparateur léger */
         }
 
         .home-list a:hover {
-            background: #161b45;
-            border-color: rgba(255, 255, 255, .06);
+            text-decoration: underline;
+            /* feedback au survol */
+            background: transparent;
         }
+
 
         /* Titres & sections */
         .section-title {
