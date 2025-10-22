@@ -351,10 +351,10 @@
         }
 
         /* Liste des derniers posts (Accueil) */
-        /* Liste des derniers posts (Accueil) */
         .home-list {
             display: block;
-            margin: 4px 0;
+            margin: 0;
+            /* pas de marge qui déborde du card */
             padding: 0;
         }
 
@@ -362,9 +362,8 @@
             display: block;
             padding: 8px 0;
             border: 0;
-            /* plus de contour par item */
+            /* pas d'encadré par item */
             background: transparent;
-            /* plus de fond par item */
             border-radius: 0;
             font-weight: 800;
             color: #eaf0ff;
@@ -373,13 +372,17 @@
 
         .home-list a+a {
             border-top: 1px dashed rgba(255, 255, 255, .12);
-            /* simple séparateur léger */
+            /* simple séparateur */
         }
 
         .home-list a:hover {
             text-decoration: underline;
-            /* feedback au survol */
             background: transparent;
+        }
+
+        /* si un jour "hidden" ne masque pas chez certains navigateurs */
+        #homeLatestPlaceholder[hidden] {
+            display: none !important;
         }
 
 
