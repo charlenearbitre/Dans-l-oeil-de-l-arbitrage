@@ -906,7 +906,10 @@
                         <h3>Exemple : Gestes officiels – Fautes personnelles</h3>
                         <iframe class="pdf-embed" src="assets/1.pdf#toolbar=0" title="PDF 1"></iframe>
                         <div style="display:flex;gap:8px;margin-top:10px;">
-                            <a class="btn" href="assets/1.pdf" download>Télécharger</a>
+                            <<<<<<< HEAD <a class="btn" href="assets/1.pdf" download>Télécharger</a>
+                                =======
+                                <a class="btn" href="assets/2.pdf" download>Télécharger</a>
+                                >>>>>>> a113116 (Initial commit : site Arbitrage)
                         </div>
                     </article>
 
@@ -1043,15 +1046,29 @@
     </script>
 
     <!-- Script principal (routing + EmailJS + fallback + modal) -->
+    <!-- Script principal (routing + EmailJS + modal) -->
     <script>
         // Routing + Nav
         const pages = ['home', 'pdfs', 'videos', 'blog', 'contact'];
         function navTo(id) {
-            pages.forEach(function (p) { var el = document.getElementById(p); if (!el) return; el.classList.toggle('active,', false); });
-            pages.forEach(function (p) { var el = document.getElementById(p); if (!el) return; el.classList.toggle('active', p === id); });
+            // retire "active" partout
+            pages.forEach(function (p) {
+                var el = document.getElementById(p);
+                if (!el) return;
+                el.classList.remove('active');
+            });
+            // active la page ciblée
+            pages.forEach(function (p) {
+                var el = document.getElementById(p);
+                if (!el) return;
+                el.classList.toggle('active', p === id);
+            });
+
             document.body.dataset.theme = (id === 'home') ? 'home' : id;
-            var menu = document.getElementById('menu'); menu.classList.remove('open');
-            document.getElementById('hamburger').setAttribute('aria-expanded', 'false');
+            var menu = document.getElementById('menu');
+            if (menu) menu.classList.remove('open');
+            var hb = document.getElementById('hamburger');
+            if (hb) hb.setAttribute('aria-expanded', 'false');
             if (id !== 'home') window.scrollTo({ top: 0, behavior: 'smooth' });
             if (location.hash !== '#' + id) history.replaceState(null, '', '#' + id);
         }
@@ -1074,12 +1091,13 @@
             return '<p class="muted">Lien : <a target="_blank" rel="noopener" href="' + safe + '">' + safe + '</a></p>';
         }
         function escapeHtml(s) { return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
-        window.renderVideo = renderVideo; window.escapeHtml = escapeHtml;
+        window.renderVideo = renderVideo;
+        window.escapeHtml = escapeHtml;
 
-        // Destinataire fixe pour Contact (inchangé)
+        // Destinataire fixe pour Contact
         window.CONTACT_TO = "charlenecarre.arbitreidf@gmail.com";
 
-        // --- Accueil : remplir la liste avec les derniers posts ---
+        // --- Accueil : remplir la liste avec les derniers posts (depuis Firestore) ---
         function updateHomeLatest(posts) {
             var list = document.getElementById('homeLatestList');
             var ph = document.getElementById('homeLatestPlaceholder');
@@ -1103,6 +1121,7 @@
             if (ph) ph.hidden = true;
             list.hidden = false;
 
+            // clic → aller au blog puis scroll sur le post
             Array.prototype.forEach.call(list.querySelectorAll('a[data-post-id]'), function (a) {
                 a.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -1112,8 +1131,9 @@
                 });
             });
         }
+        window.updateHomeLatest = updateHomeLatest;
 
-        // Essaie plusieurs fois jusqu'à trouver l'élément (temps réel)
+        // Essaie plusieurs fois jusqu'à trouver l'élément (flux temps réel)
         function scrollToPostWhenReady(targetId, tries, delayMs) {
             function go() {
                 var el = document.getElementById(targetId);
@@ -1129,19 +1149,6 @@
             })(left);
         }
 
-        function loadFeedFallback() {
-            var composer = document.getElementById('composer'); var login = document.getElementById('adminLoginBtn'); var logout = document.getElementById('adminLogoutBtn'); var hint = document.getElementById('authHint');
-            if (composer) composer.style.display = 'none'; if (login) login.setAttribute('disabled', 'true'); if (logout) logout.style.display = 'none'; if (hint) hint.textContent = 'Mode démo (lecture seule) — activez Firebase pour publier';
-            var feed = document.getElementById('feed');
-            var sample = { id: 'demo1', subject: 'Exemple de sujet', subtext: 'Texte d’accompagnement du sujet.', video: 'https://youtu.be/dQw4w9WgXcQ' };
-            var el = document.createElement('article'); el.className = 'post'; el.id = 'post-' + sample.id;
-            el.innerHTML = '<header><h3>' + escapeHtml(sample.subject) + '</h3></header>' + '<p class="lead-subtext">' + escapeHtml(sample.subtext) + '</p>' + renderVideo(sample.video) + '<div class="reactions">' + ['👍', '❤️', '👏', '🤔', '❓'].map(function (e) { return '<button class="reaction" disabled>' + e + '</button>'; }).join('') + '</div>' + '<div class="comments"><div class="comment muted">Commentaires désactivés en démo.</div></div>';
-            feed.innerHTML = ''; feed.appendChild(el);
-
-            // ➜ remplir la liste d'accueil
-            updateHomeLatest([sample]);
-        }
-
         function validateContact() {
             var email = document.getElementById('email').value.trim();
             var ok = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
@@ -1150,17 +1157,36 @@
         }
 
         // Modal helpers
-        function openAuthModal() { document.getElementById('authModal').classList.add('open'); setTimeout(function () { var em = document.getElementById('authEmail'); if (em) em.focus(); }, 0); }
+        function openAuthModal() {
+            document.getElementById('authModal').classList.add('open');
+            setTimeout(function () { var em = document.getElementById('authEmail'); if (em) em.focus(); }, 0);
+        }
         function closeAuthModal() { document.getElementById('authModal').classList.remove('open'); }
 
         window.addEventListener('load', function () {
             // Hash routing
-            var initial = (location.hash || '#home').replace('#', ''); navTo(pages.indexOf(initial) >= 0 ? initial : 'home');
-            window.addEventListener('hashchange', function () { var h = (location.hash || '#home').replace('#', ''); if (pages.indexOf(h) >= 0) navTo(h); });
+            var initial = (location.hash || '#home').replace('#', '');
+            navTo(pages.indexOf(initial) >= 0 ? initial : 'home');
+            window.addEventListener('hashchange', function () {
+                var h = (location.hash || '#home').replace('#', '');
+                if (pages.indexOf(h) >= 0) navTo(h);
+            });
 
-            document.getElementById('menu').addEventListener('click', function (e) { var a = e.target.closest('a[data-section]'); if (!a) return; e.preventDefault(); navTo(a.getAttribute('data-section')); });
+            document.getElementById('menu').addEventListener('click', function (e) {
+                var a = e.target.closest('a[data-section]');
+                if (!a) return;
+                e.preventDefault();
+                navTo(a.getAttribute('data-section'));
+            });
             document.getElementById('hamburger').addEventListener('click', toggleMenu);
-            document.addEventListener('click', function (e) { var menu = document.getElementById('menu'); var btn = document.getElementById('hamburger'); if (!menu.contains(e.target) && !btn.contains(e.target)) { menu.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); } });
+            document.addEventListener('click', function (e) {
+                var menu = document.getElementById('menu');
+                var btn = document.getElementById('hamburger');
+                if (!menu.contains(e.target) && !btn.contains(e.target)) {
+                    menu.classList.remove('open');
+                    btn.setAttribute('aria-expanded', 'false');
+                }
+            });
             document.getElementById('brandLink').addEventListener('click', function () { navTo('home'); });
 
             // Contact (EmailJS sinon Gmail/mailto)
@@ -1213,19 +1239,17 @@
             }
 
             // Modal events
-            var loginBtn = document.getElementById('adminLoginBtn'); var logoutBtn = document.getElementById('adminLogoutBtn');
-            var authSubmit = document.getElementById('authSubmit'); var authCancel = document.getElementById('authCancel');
+            var loginBtn = document.getElementById('adminLoginBtn');
+            var authCancel = document.getElementById('authCancel');
             if (loginBtn) loginBtn.addEventListener('click', openAuthModal);
             if (authCancel) authCancel.addEventListener('click', function () { closeAuthModal(); });
 
-            // Fallback blog si Firebase pas prêt
-            setTimeout(function () { if (!window.FIREBASE_READY) { loadFeedFallback(); } }, 700);
+            // ⚠️ Aucun fallback démo ici
         });
     </script>
-
-    <!-- Firebase (module) -->
+    <!-- Script Firebase (module) -->
     <script type="module">
-        // ▼▼▼ METTRE true si Firebase actif
+        // Firebase actif
         const USE_FIREBASE = true;
         const firebaseConfig = {
             apiKey: "AIzaSyAeHMJIQ1wJZpPiVG3J2drfg-o9jxz-prI",
@@ -1238,9 +1262,7 @@
         const ADMIN_UID = "GufRk7GxgHOL1AfaYJpInunPegm2";
         const EMOJIS = ['👍', '❤️', '👏', '🤔', '❓'];
 
-        if (!USE_FIREBASE) {
-            // lecture seule (fallback)
-        } else {
+        if (USE_FIREBASE) {
             Promise.all([
                 import('https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js'),
                 import('https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js'),
@@ -1279,12 +1301,13 @@
                 // Connexion via modal
                 const authModal = document.getElementById('authModal');
                 const authEmail = document.getElementById('authEmail');
-                theAuthPass = document.getElementById('authPass');
+                const authPass = document.getElementById('authPass');
                 const authSubmitBtn = document.getElementById('authSubmit');
                 const authCancelBtn = document.getElementById('authCancel');
+
                 if (authSubmitBtn) authSubmitBtn.addEventListener('click', async function () {
                     const email = (authEmail && authEmail.value || '').trim();
-                    const pass = (theAuthPass && theAuthPass.value || '').trim();
+                    const pass = (authPass && authPass.value || '').trim();
                     if (!email || !pass) { alert('Renseigne email et mot de passe.'); return; }
                     try {
                         await signInWithEmailAndPassword(auth, email, pass);
@@ -1298,8 +1321,8 @@
 
                 // Posts temps réel
                 const postsRef = collection(db, 'posts');
-                const q = query(postsRef, orderBy('createdAt', 'desc'));
-                onSnapshot(q, (snap) => {
+                const qPosts = query(postsRef, orderBy('createdAt', 'desc'));
+                onSnapshot(qPosts, (snap) => {
                     const posts = snap.docs.map(d => ({ id: d.id, ...d.data() }));
                     renderFeedFS(posts);
                     // ➜ met à jour la liste d'accueil
@@ -1314,16 +1337,24 @@
                     const subtext = document.getElementById('subtext').value.trim();
                     if (!subject) { alert('Ajoutez un sujet'); return; }
                     await addDoc(postsRef, { subject, video, subtext, createdAt: serverTimestamp(), authorUid: user.uid });
-                    document.getElementById('subject').value = ''; document.getElementById('videoUrl').value = ''; document.getElementById('subtext').value = '';
+                    document.getElementById('subject').value = '';
+                    document.getElementById('videoUrl').value = '';
+                    document.getElementById('subtext').value = '';
                 });
 
                 function renderFeedFS(posts) {
                     feedWrap.innerHTML = '';
                     if (!posts.length) {
-                        const d = document.createElement('div'); d.className = 'post muted'; d.textContent = 'Aucun post pour le moment.'; feedWrap.appendChild(d); return;
+                        const d = document.createElement('div');
+                        d.className = 'post muted';
+                        d.textContent = 'Aucun post pour le moment.';
+                        feedWrap.appendChild(d);
+                        return;
                     }
                     posts.forEach(function (p) {
-                        const el = document.createElement('article'); el.className = 'post'; el.id = 'post-' + p.id;
+                        const el = document.createElement('article');
+                        el.className = 'post';
+                        el.id = 'post-' + p.id;
                         el.innerHTML =
                             '<header><h3>' + window.escapeHtml(p.subject || '') + '</h3></header>' +
                             (p.subtext ? '<p class="lead-subtext">' + window.escapeHtml(p.subtext) + '</p>' : '') +
@@ -1342,7 +1373,9 @@
                         const qy = query(cRef, orderBy('createdAt', 'asc'));
                         onSnapshot(qy, function (snap) {
                             const box = document.getElementById('comments-' + p.id);
-                            box.innerHTML = snap.docs.map(function (d) { return '<div class="comment">' + window.escapeHtml((d.data() && d.data().text) || '') + '</div>'; }).join('');
+                            box.innerHTML = snap.docs.map(function (d) {
+                                return '<div class="comment">' + window.escapeHtml((d.data() && d.data().text) || '') + '</div>';
+                            }).join('');
                         });
 
                         // Réactions (compteurs + état sélection en temps réel)
@@ -1384,7 +1417,7 @@
                 // Clic réactions (écriture + feedback optimiste)
                 feedWrap.addEventListener('click', async function (e) {
                     const btn = e.target.closest('button.reaction'); if (!btn) return;
-                    const card = e.target.closest('post') || e.target.closest('.post'); if (!card) return;
+                    const card = e.target.closest('.post'); if (!card) return;
                     const form = card.querySelector('.comment form'); if (!form) return;
                     const postId = form.getAttribute('data-post'); if (!postId) return;
                     const emoji = btn.getAttribute('data-emoji');
@@ -1423,30 +1456,13 @@
 
             }).catch((err) => {
                 console.error('Firebase import error', err);
-                const hint = document.getElementById('authHint'); if (hint) hint.textContent = "Erreur d'import Firebase";
+                const hint = document.getElementById('authHint');
+                if (hint) hint.textContent = "Erreur d'import Firebase";
             });
         }
-
-        /* RÈGLES Firestore — à coller dans la console
-        rules_version = '2';
-        service cloud.firestore {
-          match /databases/{database}/documents {
-            match /posts/{postId} {
-              allow read: if true;
-              allow create, update, delete: if request.auth != null && request.auth.uid == 'VOTRE_UID_ADMIN_ICI';
-            }
-            match /posts/{postId}/comments/{commentId} {
-              allow read: if true;
-              allow create: if true; // (ou remplace par: request.auth != null)
-            }
-            match /posts/{postId}/reactions/{userId} {
-              allow read: if true;
-              allow create, update, delete: if request.auth != null && request.auth.uid == userId;
-            }
-          }
-        }
-        */
     </script>
+
+
 </body>
 
 </html>
