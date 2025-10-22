@@ -29,11 +29,8 @@
             --accent-blog: #ff7a18;
             --accent-contact: #2f9e44;
 
-            /* Hero */
-            --hero-grad-1: #0b1630;
-            --hero-grad-2: #0f224d;
+            /* Image globale utilisée partout */
             --home-bg: url('assets/referee.png');
-            /* remplace par ta photo */
         }
 
         * {
@@ -242,31 +239,9 @@
         #home {
             position: relative;
             color: white;
-            background: linear-gradient(180deg, var(--hero-grad-1), var(--hero-grad-2));
-            min-height: calc(100vh - 64px);
-        }
-
-        body[data-theme="home"] main {
+            /* on retire le dégradé pour voir la photo globale */
             background: transparent;
-        }
-
-        #home .hero-bg {
-            position: absolute;
-            inset: 0;
-            overflow: hidden;
-            z-index: 0;
-        }
-
-        #home .hero-bg::before {
-            content: "";
-            position: absolute;
-            inset: -8px;
-            background-image: var(--home-bg);
-            background-size: cover;
-            background-position: center 32%;
-            filter: blur(8px) saturate(1.05) brightness(.8);
-            transform: scale(1.06);
-            opacity: .55;
+            min-height: calc(100vh - 64px);
         }
 
         #home .hero {
@@ -799,9 +774,37 @@
             margin-top: 12px;
         }
 
+        /* Accueil : la carte "Dernières publications" prend toute la largeur */
         #home .home-panels .card {
             grid-column: 1 / -1;
-            /* span sur les 12 colonnes */
+        }
+
+        /* ---- Fond global (photo partout) ---- */
+        .site-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .site-bg::before {
+            content: "";
+            position: absolute;
+            inset: -8px;
+            background-image: var(--home-bg);
+            background-size: cover;
+            background-position: center 32%;
+            filter: blur(8px) saturate(1.05) brightness(.8);
+            transform: scale(1.06);
+            opacity: .55;
+        }
+
+        /* Le contenu passe au-dessus du fond global et on le rend transparent */
+        main {
+            position: relative;
+            z-index: 1;
+            background: transparent;
         }
 
         /* Utils */
@@ -837,10 +840,13 @@
         </nav>
     </header>
 
+    <!-- Fond global (même image partout) -->
+    <div class="site-bg" aria-hidden="true"></div>
+
     <main>
         <!-- ACCUEIL -->
         <section id="home" class="page active" role="region" aria-label="Accueil">
-            <div class="hero-bg" aria-hidden="true"></div>
+            <!-- hero-bg supprimé : on utilise .site-bg -->
             <div class="wrap hero">
                 <h1><span class="accent">Dans l’œil de l’arbitrage&nbsp;!</span></h1>
                 <p class="lead">Partage de <strong>petites formations</strong>, de <strong>liens vidéos</strong>, un
@@ -863,19 +869,22 @@
 
                 <footer>
                     <div class="socials" aria-label="Réseaux sociaux">
-                        <a href="https://www.instagram.com/charlene_arbitreoff/" target="_blank" rel="noopener" aria-label="Instagram">
+                        <a href="https://www.instagram.com/charlene_arbitreoff/" target="_blank" rel="noopener"
+                            aria-label="Instagram">
                             <svg viewBox="0 0 24 24" aria-hidden="true">
                                 <path
                                     d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 4.5A5.5 5.5 0 1 1 6.5 14 5.5 5.5 0 0 1 12 8.5zm0 2A3.5 3.5 0 1 0 15.5 14 3.5 3.5 0 0 0 12 10.5zM18 6.2a1.2 1.2 0 1 1-1.2 1.2A1.2 1.2 0 0 1 18 6.2z" />
                             </svg>
                         </a>
-                        <a href="https://www.tiktok.com/@charlene_arbitreoff?lang=fr" target="_blank" rel="noopener" aria-label="TikTok">
+                        <a href="https://www.tiktok.com/@charlene_arbitreoff?lang=fr" target="_blank" rel="noopener"
+                            aria-label="TikTok">
                             <svg viewBox="0 0 24 24" aria-hidden="true">
                                 <path
                                     d="M14.5 3h2a5.5 5.5 0 0 0 5.5 5.5v2a7.5 7.5 0 0 1-5.5-2.3V15a6 6 0 1 1-6-6 6.1 6.1 0 0 1 1.5.2V11a3.9 3.9 0 0 0-1.5-.3 4 4 0 1 0 4 4z" />
                             </svg>
                         </a>
-                        <a href="https://www.youtube.com/@charlene_arbitreoff" target="_blank" rel="noopener" aria-label="YouTube">
+                        <a href="https://www.youtube.com/@charlene_arbitreoff" target="_blank" rel="noopener"
+                            aria-label="YouTube">
                             <svg viewBox="0 0 24 24" aria-hidden="true">
                                 <path
                                     d="M23 12s0-3.4-.4-5a3 3 0 0 0-2.1-2.1C18.9 4.3 12 4.3 12 4.3s-6.9 0-8.5.6A3 3 0 0 0 1.4 7C1 8.6 1 12 1 12s0 3.4.4 5a3 3 0 0 0 2.1 2.1c1.6.6 8.5.6 8.5.6s6.9 0 8.5-.6A3 3 0 0 0 22.6 17c.4-1.6.4-5 .4-5zM10 15.5v-7l6 3.5z" />
@@ -1038,6 +1047,7 @@
         // Routing + Nav
         const pages = ['home', 'pdfs', 'videos', 'blog', 'contact'];
         function navTo(id) {
+            pages.forEach(function (p) { var el = document.getElementById(p); if (!el) return; el.classList.toggle('active,', false); });
             pages.forEach(function (p) { var el = document.getElementById(p); if (!el) return; el.classList.toggle('active', p === id); });
             document.body.dataset.theme = (id === 'home') ? 'home' : id;
             var menu = document.getElementById('menu'); menu.classList.remove('open');
@@ -1045,7 +1055,13 @@
             if (id !== 'home') window.scrollTo({ top: 0, behavior: 'smooth' });
             if (location.hash !== '#' + id) history.replaceState(null, '', '#' + id);
         }
-        function toggleMenu() { var menu = document.getElementById('menu'); var btn = document.getElementById('hamburger'); var open = !menu.classList.contains('open'); menu.classList.toggle('open', open); btn.setAttribute('aria-expanded', String(open)); }
+        function toggleMenu() {
+            var menu = document.getElementById('menu');
+            var btn = document.getElementById('hamburger');
+            var open = !menu.classList.contains('open');
+            menu.classList.toggle('open', open);
+            btn.setAttribute('aria-expanded', String(open));
+        }
 
         function renderVideo(url) {
             if (!url) return '';
@@ -1059,6 +1075,7 @@
         }
         function escapeHtml(s) { return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
         window.renderVideo = renderVideo; window.escapeHtml = escapeHtml;
+
         // Destinataire fixe pour Contact (inchangé)
         window.CONTACT_TO = "charlenecarre.arbitreidf@gmail.com";
 
@@ -1075,7 +1092,6 @@
                 return;
             }
 
-            // on affiche les 5 derniers
             var top = posts.slice(0, 5);
             list.innerHTML = top.map(function (p) {
                 var title = (p.subject || '').toString().trim();
@@ -1087,7 +1103,6 @@
             if (ph) ph.hidden = true;
             list.hidden = false;
 
-            // clic → aller au blog puis scroll sur le post
             Array.prototype.forEach.call(list.querySelectorAll('a[data-post-id]'), function (a) {
                 a.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -1097,6 +1112,7 @@
                 });
             });
         }
+
         // Essaie plusieurs fois jusqu'à trouver l'élément (temps réel)
         function scrollToPostWhenReady(targetId, tries, delayMs) {
             function go() {
@@ -1263,12 +1279,12 @@
                 // Connexion via modal
                 const authModal = document.getElementById('authModal');
                 const authEmail = document.getElementById('authEmail');
-                const authPass = document.getElementById('authPass');
-                const authSubmit = document.getElementById('authSubmit');
-                const authCancel = document.getElementById('authCancel');
-                if (authSubmit) authSubmit.addEventListener('click', async function () {
+                theAuthPass = document.getElementById('authPass');
+                const authSubmitBtn = document.getElementById('authSubmit');
+                const authCancelBtn = document.getElementById('authCancel');
+                if (authSubmitBtn) authSubmitBtn.addEventListener('click', async function () {
                     const email = (authEmail && authEmail.value || '').trim();
-                    const pass = (authPass && authPass.value || '').trim();
+                    const pass = (theAuthPass && theAuthPass.value || '').trim();
                     if (!email || !pass) { alert('Renseigne email et mot de passe.'); return; }
                     try {
                         await signInWithEmailAndPassword(auth, email, pass);
@@ -1277,7 +1293,7 @@
                         alert('Connexion impossible: ' + (e && e.message ? e.message : e));
                     }
                 });
-                if (authCancel) authCancel.addEventListener('click', function () { if (authModal) authModal.classList.remove('open'); });
+                if (authCancelBtn) authCancelBtn.addEventListener('click', function () { if (authModal) authModal.classList.remove('open'); });
                 if (logoutBtn) logoutBtn.addEventListener('click', async () => { try { await signOut(auth); } catch (_) { } });
 
                 // Posts temps réel
@@ -1368,7 +1384,7 @@
                 // Clic réactions (écriture + feedback optimiste)
                 feedWrap.addEventListener('click', async function (e) {
                     const btn = e.target.closest('button.reaction'); if (!btn) return;
-                    const card = e.target.closest('.post'); if (!card) return;
+                    const card = e.target.closest('post') || e.target.closest('.post'); if (!card) return;
                     const form = card.querySelector('.comment form'); if (!form) return;
                     const postId = form.getAttribute('data-post'); if (!postId) return;
                     const emoji = btn.getAttribute('data-emoji');
