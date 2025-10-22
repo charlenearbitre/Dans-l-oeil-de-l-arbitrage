@@ -375,6 +375,29 @@
             letter-spacing: .2px;
         }
 
+        /* Liste des derniers posts (Accueil) */
+        .home-list {
+            display: grid;
+            gap: 10px;
+        }
+
+        .home-list a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            border: 1px solid #1a1f44;
+            background: rgba(255, 255, 255, .02);
+            border-radius: 12px;
+            font-weight: 800;
+            color: #eaf0ff;
+        }
+
+        .home-list a:hover {
+            background: #161b45;
+            border-color: rgba(255, 255, 255, .06);
+        }
+
         /* Titres & sections */
         .section-title {
             display: flex;
@@ -412,7 +435,7 @@
 
         .pdf-card h3 {
             margin: 6px 6px 10px;
-            color: var(--text-dark);
+            color: var(--text-white);
         }
 
         .pdf-embed {
@@ -816,7 +839,8 @@
             <div class="wrap hero">
                 <h1><span class="accent">Dans l’œil de l’arbitrage&nbsp;!</span></h1>
                 <p class="lead">Partage de <strong>petites formations</strong>, de <strong>liens vidéos</strong>, un
-                    <strong>blog</strong> pour débattre, et un <strong>contact</strong> direct.</p>
+                    <strong>blog</strong> pour débattre, et un <strong>contact</strong> direct.
+                </p>
                 <div class="cta-row">
                     <a class="btn primary" href="#pdfs">Voir les PDF</a>
                     <a class="btn ghost" href="#blog">Aller au blog</a>
@@ -824,13 +848,11 @@
 
                 <div class="home-panels" style="margin-top: 18px;">
                     <article class="card">
-                        <h3>Zone de publications (texte / annonces)</h3>
-                        <div class="placeholder">— Place pour vos annonces et nouvelles —</div>
-                    </article>
-
-                    <article class="card">
-                        <h3>À la une</h3>
-                        <div class="placeholder">— Image, vidéo ou PDF mis en avant —</div>
+                        <h3>Dernières publications (Blog)</h3>
+                        <div id="homeLatest">
+                            <div class="placeholder" id="homeLatestPlaceholder">— Chargement des titres… —</div>
+                            <div class="home-list" id="homeLatestList" hidden></div>
+                        </div>
                     </article>
                 </div>
 
@@ -868,7 +890,7 @@
                 <div class="grid" style="margin-top:14px;">
                     <article class="pdf-card">
                         <h3>Exemple : Gestes officiels – Fautes personnelles</h3>
-                        <iframe class="pdf-embed" src="assets/exemple.pdf#toolbar=0" title="PDF 1"></iframe>
+                        <iframe class="pdf-embed" src="assets/1.pdf#toolbar=0" title="PDF 1"></iframe>
                         <div style="display:flex;gap:8px;margin-top:10px;">
                             <a class="btn" href="assets/exemple.pdf" download>Télécharger</a>
                         </div>
@@ -876,7 +898,7 @@
 
                     <article class="pdf-card">
                         <h3>Exemple : Mécanique à 2 arbitres</h3>
-                        <iframe class="pdf-embed" src="assets/exemple2.pdf#toolbar=0" title="PDF 2"></iframe>
+                        <iframe class="pdf-embed" src="assets/2.pdf#toolbar=0" title="PDF 2"></iframe>
                         <div style="display:flex;gap:8px;margin-top:10px;">
                             <a class="btn" href="assets/exemple2.pdf" download>Télécharger</a>
                         </div>
@@ -1032,17 +1054,71 @@
         }
         function escapeHtml(s) { return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
         window.renderVideo = renderVideo; window.escapeHtml = escapeHtml;
-        // Destinataire fixe pour Contact
+        // Destinataire fixe pour Contact (inchangé)
         window.CONTACT_TO = "charlenecarre.arbitreidf@gmail.com";
+
+        // --- Accueil : remplir la liste avec les derniers posts ---
+        function updateHomeLatest(posts) {
+            var list = document.getElementById('homeLatestList');
+            var ph = document.getElementById('homeLatestPlaceholder');
+            if (!list) return;
+
+            if (!posts || !posts.length) {
+                if (ph) { ph.textContent = 'Aucune publication pour le moment.'; ph.hidden = false; }
+                list.hidden = true;
+                list.innerHTML = '';
+                return;
+            }
+
+            // on affiche les 5 derniers
+            var top = posts.slice(0, 5);
+            list.innerHTML = top.map(function (p) {
+                var title = (p.subject || '').toString().trim();
+                var id = (p.id || '').toString();
+                var safe = title.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                return '<a href="#blog" data-post-id="' + id + '">• ' + safe + '</a>';
+            }).join('');
+
+            if (ph) ph.hidden = true;
+            list.hidden = false;
+
+            // clic → aller au blog puis scroll sur le post
+            Array.prototype.forEach.call(list.querySelectorAll('a[data-post-id]'), function (a) {
+                a.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var pid = a.getAttribute('data-post-id');
+                    navTo('blog');
+                    scrollToPostWhenReady('post-' + pid, 30, 100);
+                });
+            });
+        }
+        // Essaie plusieurs fois jusqu'à trouver l'élément (temps réel)
+        function scrollToPostWhenReady(targetId, tries, delayMs) {
+            function go() {
+                var el = document.getElementById(targetId);
+                if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); return true; }
+                return false;
+            }
+            if (go()) return;
+            var left = (typeof tries === 'number' ? tries : 30);
+            var wait = (typeof delayMs === 'number' ? delayMs : 100);
+            (function retry(i) {
+                if (go() || i <= 0) return;
+                setTimeout(function () { retry(i - 1); }, wait);
+            })(left);
+        }
 
         function loadFeedFallback() {
             var composer = document.getElementById('composer'); var login = document.getElementById('adminLoginBtn'); var logout = document.getElementById('adminLogoutBtn'); var hint = document.getElementById('authHint');
             if (composer) composer.style.display = 'none'; if (login) login.setAttribute('disabled', 'true'); if (logout) logout.style.display = 'none'; if (hint) hint.textContent = 'Mode démo (lecture seule) — activez Firebase pour publier';
             var feed = document.getElementById('feed');
-            var sample = { subject: 'Exemple de sujet', subtext: 'Texte d’accompagnement du sujet.', video: 'https://youtu.be/dQw4w9WgXcQ' };
-            var el = document.createElement('article'); el.className = 'post';
+            var sample = { id: 'demo1', subject: 'Exemple de sujet', subtext: 'Texte d’accompagnement du sujet.', video: 'https://youtu.be/dQw4w9WgXcQ' };
+            var el = document.createElement('article'); el.className = 'post'; el.id = 'post-' + sample.id;
             el.innerHTML = '<header><h3>' + escapeHtml(sample.subject) + '</h3></header>' + '<p class="lead-subtext">' + escapeHtml(sample.subtext) + '</p>' + renderVideo(sample.video) + '<div class="reactions">' + ['👍', '❤️', '👏', '🤔', '❓'].map(function (e) { return '<button class="reaction" disabled>' + e + '</button>'; }).join('') + '</div>' + '<div class="comments"><div class="comment muted">Commentaires désactivés en démo.</div></div>';
             feed.innerHTML = ''; feed.appendChild(el);
+
+            // ➜ remplir la liste d'accueil
+            updateHomeLatest([sample]);
         }
 
         function validateContact() {
@@ -1205,6 +1281,8 @@
                 onSnapshot(q, (snap) => {
                     const posts = snap.docs.map(d => ({ id: d.id, ...d.data() }));
                     renderFeedFS(posts);
+                    // ➜ met à jour la liste d'accueil
+                    if (window.updateHomeLatest) window.updateHomeLatest(posts);
                 });
 
                 if (publishBtn) publishBtn.addEventListener('click', async () => {
@@ -1224,7 +1302,7 @@
                         const d = document.createElement('div'); d.className = 'post muted'; d.textContent = 'Aucun post pour le moment.'; feedWrap.appendChild(d); return;
                     }
                     posts.forEach(function (p) {
-                        const el = document.createElement('article'); el.className = 'post';
+                        const el = document.createElement('article'); el.className = 'post'; el.id = 'post-' + p.id;
                         el.innerHTML =
                             '<header><h3>' + window.escapeHtml(p.subject || '') + '</h3></header>' +
                             (p.subtext ? '<p class="lead-subtext">' + window.escapeHtml(p.subtext) + '</p>' : '') +
@@ -1299,7 +1377,7 @@
                         await setDoc(rdocRef, { emoji: emoji, updatedAt: serverTimestamp() }, { merge: true });
                     }
 
-                    // Feedback optimiste (l'instant d'avant le snapshot temps réel)
+                    // Feedback optimiste
                     const container = card.querySelector('.reactions');
                     if (container) {
                         container.querySelectorAll('.reaction').forEach(function (b) {
