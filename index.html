@@ -801,16 +801,17 @@
             overflow: hidden;
         }
 
-        .site-bg::before {
-            content: "";
-            position: absolute;
-            inset: -8px;
-            background-image: var(--home-bg);
-            background-size: contain;
-            background-position: center 32%;
-            filter: blur(8px) saturate(1.05) brightness(.8);
-            transform: scale(1.06);
-            opacity: .55;
+        .site-bg::before{
+          content:"";
+          position:absolute;
+          inset:-8px;
+          background-image: var(--home-bg);
+          background-repeat: no-repeat;   /* ✅ empêche la répétition */
+          background-position: center;    /* ✅ centre l'image */
+          background-size: contain;       /* ou cover selon ton choix */
+          filter: blur(8px) saturate(1.05) brightness(.8);
+          transform: scale(1.06);
+          opacity: .55;
         }
 
         /* Le contenu passe au-dessus du fond global et on le rend transparent */
