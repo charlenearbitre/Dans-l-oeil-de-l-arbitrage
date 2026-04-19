@@ -6,7 +6,7 @@
     <title>Dans l’œil de l’arbitrage | Centre de ressources</title>
     <meta
       name="description"
-      content="La référence pour comprendre, apprendre et débattre de l'arbitrage basketball. Formations, vidéos, formats courts Info / Intox et analyses."
+      content="La référence pour comprendre, apprendre et débattre de l'arbitrage basketball. Fiches format long, vidéos, fiches format courtes et analyses."
     />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -121,6 +121,22 @@
         display: grid;
         grid-template-columns: 1fr;
         gap: 20px;
+      }
+
+      .short-pdf-frame {
+        width: 100%;
+        height: 360px;
+        background: #000;
+        border-top: 1px solid var(--border-subtle);
+        border-bottom: 1px solid var(--border-subtle);
+        overflow: hidden;
+      }
+
+      .short-pdf-frame iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        display: block;
       }
 
       @media (min-width: 768px) {
@@ -998,9 +1014,11 @@
 
         <nav class="nav-links">
           <a href="#home" data-section="home">Accueil</a>
-          <a href="#pdfs" data-section="pdfs">Fiches Pédagogiques</a>
+          <a href="#pdfs" data-section="pdfs">Fiches format long</a>
           <a href="#videos" data-section="videos">Vidéos</a>
-          <a href="#formats-courts" data-section="info-intox">Formats Courts</a>
+          <a href="#info-intox" data-section="info-intox"
+            >Fiches format courtes</a
+          >
           <a href="#blog" data-section="blog">Blog & Débats</a>
           <a href="#contact" data-section="contact">Contact</a>
         </nav>
@@ -1012,9 +1030,11 @@
 
       <nav id="menu" class="mobile-menu">
         <a href="#home" data-section="home">Accueil</a>
-        <a href="#pdfs" data-section="pdfs">Fiches Pédagogiques</a>
+        <a href="#pdfs" data-section="pdfs">Fiches format long</a>
         <a href="#videos" data-section="videos">Vidéos</a>
-        <a href="#formats-courts" data-section="info-intox">Formats Courts</a>
+        <a href="#info-intox" data-section="info-intox"
+          >Fiches format courtes</a
+        >
         <a href="#blog" data-section="blog">Blog & Débats</a>
         <a href="#contact" data-section="contact">Contact</a>
       </nav>
@@ -1032,12 +1052,12 @@
               <p>
                 Plongez au cœur de la mécanique du basketball. Au-delà du coup
                 de sifflet, apprenez à lire le jeu, gérer les acteurs et
-                affirmer votre posture à travers nos fiches, analyses expertes
-                et formats courts pédagogiques.
+                affirmer votre posture à travers nos fiches format long, vidéos,
+                fiches format courtes et analyses expertes.
               </p>
               <div class="hero-actions">
-                <a href="#pdfs" class="btn btn-primary">Consulter les Fiches</a>
-                <a href="#blog" class="btn btn-outline">Rejoindre les Débats</a>
+                <a href="#pdfs" class="btn btn-primary">Consulter les fiches</a>
+                <a href="#blog" class="btn btn-outline">Rejoindre les débats</a>
               </div>
             </div>
 
@@ -1072,7 +1092,7 @@
           <div class="grid-4" style="margin-bottom: 80px">
             <div class="step-card">
               <div class="step-num">01</div>
-              <h3>Maîtriser les Règles</h3>
+              <h3>Maîtriser les règles</h3>
               <p>
                 Étudiez les fiches sur les fautes spéciales, les violations et
                 leurs réparations exactes.
@@ -1090,7 +1110,7 @@
 
             <div class="step-card">
               <div class="step-num">03</div>
-              <h3>Gérer le Match</h3>
+              <h3>Gérer le match</h3>
               <p>
                 Apprenez à interagir efficacement avec les joueurs, les coachs,
                 les OTM et le public.
@@ -1101,7 +1121,7 @@
               <div class="step-num">04</div>
               <h3>Analyser</h3>
               <p>
-                Rejoignez le blog et les formats courts pour confronter
+                Rejoignez le blog et les fiches format courtes pour confronter
                 les idées reçues et aiguiser votre lecture des situations.
               </p>
             </div>
@@ -1114,28 +1134,28 @@
           <div class="grid-4" style="margin-bottom: 80px">
             <div class="feature-card">
               <div class="feature-icon">📄</div>
-              <h3>Fiches Synthétiques PDF</h3>
+              <h3>Fiches format long</h3>
               <p>
-                Des résumés clairs, visuels et téléchargeables à emmener partout
-                avec vous dans votre sac d'arbitre.
+                Des supports détaillés, visuels et téléchargeables pour
+                approfondir les règles, la mécanique et la gestion de match.
               </p>
             </div>
 
             <div class="feature-card">
               <div class="feature-icon">🎥</div>
-              <h3>Études Vidéos</h3>
+              <h3>Vidéos</h3>
               <p>
-                L'analyse d'images est le meilleur outil de progression.
-                Retrouvez des cas réels décortiqués.
+                Retrouvez des vidéos normales, des vidéos info / intox et des
+                vidéos 30 secondes pour apprendre visuellement.
               </p>
             </div>
 
             <div class="feature-card">
               <div class="feature-icon">⚡</div>
-              <h3>Formats Courts</h3>
+              <h3>Fiches format courtes</h3>
               <p>
-                Des formats courts de 30 secondes pour démonter les idées reçues
-                et clarifier rapidement les règles.
+                Des contenus courts pour retenir l’essentiel, corriger les idées
+                reçues et progresser rapidement sur des points précis.
               </p>
             </div>
 
@@ -1190,10 +1210,10 @@
       <section id="pdfs" class="page">
         <div class="wrap">
           <div class="section-header">
-            <h2>Fiches Pédagogiques</h2>
+            <h2>Fiches format long</h2>
             <p>
-              La bible de l'arbitre. Consultez directement l'aperçu ou
-              téléchargez le PDF pour réviser avant vos rencontres.
+              Les fiches détaillées pour approfondir les règles, la gestuelle,
+              la mécanique et la gestion de match.
             </p>
           </div>
           <div id="pdfContainer"></div>
@@ -1203,10 +1223,10 @@
       <section id="videos" class="page">
         <div class="wrap">
           <div class="section-header">
-            <h2>Bibliothèque Vidéo</h2>
+            <h2>Vidéos</h2>
             <p>
-              Apprendre par l'image. Visualisez la gestuelle exacte et
-              l'application des consignes en conditions réelles.
+              Retrouvez ici les vidéos normales, les vidéos info / intox et les
+              vidéos 30 secondes pour apprendre de manière visuelle et rapide.
             </p>
           </div>
           <div id="videoContainer"></div>
@@ -1219,11 +1239,10 @@
             <span class="badge badge-info-intox" style="margin-bottom: 14px"
               >Format court</span
             >
-            <h2>Formats Courts</h2>
+            <h2>Fiches format courtes</h2>
             <p>
-              Des formats courts pour corriger les idées reçues, clarifier des
-              règles et mieux comprendre les situations de match en moins de 30
-              secondes.
+              Des contenus courts et rapides à consulter pour corriger les idées
+              reçues, retenir l’essentiel et progresser en quelques secondes.
             </p>
           </div>
           <div id="infoIntoxContainer"></div>
@@ -1594,14 +1613,12 @@
             {
               title: "30 secondes / Intox : marcher automatique ?",
               desc: "Une chute ou un déséquilibre entraîne-t-il forcément un marcher ?",
-              type: "mp4",
-              file: "assets/info-intox/1.mp4",
+              file: "assets/info-intox/1.pdf",
             },
             {
-              title: "30 Secondes : reprise de dribble",
+              title: "30 secondes : reprise de dribble",
               desc: "Peut-on retoucher le ballon après une perte de contrôle ?",
-              type: "tiktok",
-              file: "https://www.tiktok.com/@overtime/video/7630250205333474574?q=nba&t=1776599399663",
+              file: "assets/info-intox/2.pdf",
             },
           ],
         },
@@ -1611,8 +1628,7 @@
             {
               title: "Info / Intox : contact = faute ?",
               desc: "Tous les contacts ne sont pas des fautes. Voici pourquoi.",
-              type: "mp4",
-              file: "assets/info-intox/2.mp4",
+              file: "assets/info-intox/3.pdf",
             },
           ],
         },
@@ -1620,13 +1636,31 @@
 
       const videoData = [
         {
-          cat: "Analyses Pratiques",
+          cat: "Vidéos normales",
           items: [
             { title: "Gestuelle & Mécanique", file: "assets/videos/1.mp4" },
             { title: "Lecture du contact", file: "assets/videos/2.mp4" },
             {
               title: "Gestion globale des acteurs",
               file: "assets/videos/3.mp4",
+            },
+          ],
+        },
+        {
+          cat: "Vidéos info / intox",
+          items: [
+            {
+              title: "Info / Intox : contact = faute ?",
+              file: "assets/info-intox/2.mp4",
+            },
+          ],
+        },
+        {
+          cat: "Vidéos 30 secondes",
+          items: [
+            {
+              title: "30 secondes / marcher automatique ?",
+              file: "assets/info-intox/1.mp4",
             },
           ],
         },
@@ -1648,46 +1682,6 @@
       function closePdfModal() {
         document.getElementById("pdfModal").classList.remove("open");
         document.getElementById("pdfModalIframe").src = "";
-      }
-
-      function getTikTokVideoId(url) {
-        const match = String(url).match(/\/video\/(\d+)/);
-        return match ? match[1] : null;
-      }
-
-      function renderShortMedia(item) {
-        if (item.type === "mp4") {
-          return `
-            <div class="short-video-frame">
-              <video controls preload="metadata" playsinline src="${item.file}"></video>
-            </div>
-          `;
-        }
-
-        if (item.type === "tiktok") {
-          const id = getTikTokVideoId(item.file);
-
-          if (id) {
-            return `
-              <div class="short-video-frame">
-                <iframe
-                  src="https://www.tiktok.com/player/v1/${id}?controls=1&description=0"
-                  allowfullscreen
-                  loading="lazy"
-                  referrerpolicy="strict-origin-when-cross-origin">
-                </iframe>
-              </div>
-            `;
-          }
-
-          return `
-            <div class="short-video-frame" style="display:grid;place-items:center;padding:20px;">
-              <a href="${item.file}" target="_blank" rel="noopener" class="btn btn-outline">Voir sur TikTok</a>
-            </div>
-          `;
-        }
-
-        return "";
       }
 
       const pdfContainer = document.getElementById("pdfContainer");
@@ -1741,24 +1735,24 @@
       infoIntoxData.forEach((cat) => {
         infoIntoxHtml += `<h2 class="category-title">${escapeHtml(cat.cat)}</h2><div class="short-grid">`;
         cat.items.forEach((item) => {
+          const safeTitle = item.title.replace(/'/g, "\\'");
           infoIntoxHtml += `
-            <article class="short-card">
-              <div class="short-card-head">
-                <span class="badge badge-info-intox">Formats Courts</span>
-                <h3>${escapeHtml(item.title)}</h3>
-                <p>${escapeHtml(item.desc)}</p>
-              </div>
+      <article class="short-card">
+        <div class="short-card-head">
+          <span class="badge badge-info-intox">Fiche courte</span>
+          <h3>${escapeHtml(item.title)}</h3>
+          <p>${escapeHtml(item.desc)}</p>
+        </div>
 
-              ${renderShortMedia(item)}
+        <div class="short-pdf-frame">
+          <iframe src="${item.file}#toolbar=0" title="${escapeHtml(item.title)}" loading="lazy"></iframe>
+        </div>
 
-              <div class="short-card-footer">
-                ${
-                  item.type === "mp4"
-                    ? `<a class="btn btn-primary" href="${item.file}" target="_blank" rel="noopener">Voir en grand</a>`
-                    : `<a class="btn btn-primary" href="${item.file}" target="_blank" rel="noopener">Ouvrir TikTok</a>`
-                }
-              </div>
-            </article>`;
+        <div class="short-card-footer">
+          <button class="btn btn-outline" onclick="openPdfModal('${item.file}', '${safeTitle}')">Agrandir</button>
+          <a class="btn btn-primary" href="${item.file}" download>Télécharger</a>
+        </div>
+      </article>`;
         });
         infoIntoxHtml += `</div>`;
       });
