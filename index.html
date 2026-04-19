@@ -1,1481 +1,2228 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Dans l’œil de l’arbitrage !</title>
-    <meta name="description" content="Formations PDF, liens vidéos, blog modéré et contact — arbitrage basket." />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <title>Dans l’œil de l’arbitrage | Centre de ressources</title>
+    <meta
+      name="description"
+      content="La référence pour comprendre, apprendre et débattre de l'arbitrage basketball. Formations, vidéos, formats courts Info / Intox et analyses."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
     <style>
-        :root {
-            --radius: 14px;
-            --radius-lg: 22px;
-            --shadow: 0 10px 30px rgba(0, 0, 0, .12);
-            --text: #eaf0ff;
-            --text-dark: #0e1321;
-            --muted: #9aa4c4;
-            --border: #1b2245;
-            --bg: #0b1026;
-            /* fond global sombre */
-            --panel: #101433;
+      :root {
+        --bg-base: #050811;
+        --bg-surface: #0a0f1e;
+        --bg-surface-elevated: #111827;
 
-            /* Accents */
-            --accent-home: #2c77ff;
-            --accent-pdfs: #0aa388;
-            --accent-videos: #7a5cff;
-            --accent-blog: #ff7a18;
-            --accent-contact: #2f9e44;
+        --border-subtle: rgba(255, 255, 255, 0.08);
+        --border-highlight: rgba(255, 255, 255, 0.15);
 
-            /* Image globale utilisée partout */
-            --home-bg: url('assets/referee.png');
+        --text-heading: #ffffff;
+        --text-body: #94a3b8;
+        --text-muted: #64748b;
+
+        --primary: #2563eb;
+        --primary-hover: #1d4ed8;
+        --primary-glow: rgba(37, 99, 235, 0.4);
+
+        --accent: #f59e0b;
+        --accent-soft: rgba(245, 158, 11, 0.14);
+        --accent-border: rgba(245, 158, 11, 0.35);
+        --success: #10b981;
+        --danger: #ef4444;
+
+        --radius-sm: 8px;
+        --radius-md: 14px;
+        --radius-lg: 24px;
+
+        --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 10px 25px rgba(0, 0, 0, 0.5);
+        --shadow-glow: 0 0 40px var(--primary-glow);
+
+        --font-main: "Inter", system-ui, sans-serif;
+        --referee-img: url("assets/referee.png");
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        height: 100%;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-main);
+        background-color: var(--bg-base);
+        color: var(--text-body);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+        transition: 0.3s ease;
+      }
+
+      img,
+      video,
+      iframe {
+        max-width: 100%;
+        display: block;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: var(--text-heading);
+        font-weight: 800;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+      }
+
+      .wrap {
+        width: min(1200px, 90vw);
+        margin: 0 auto;
+        padding: 60px 0;
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .grid-4 {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      @media (min-width: 768px) {
+        .grid-2 {
+          grid-template-columns: repeat(2, 1fr);
         }
 
-        * {
-            box-sizing: border-box;
+        .grid-3 {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .grid-3 {
+          grid-template-columns: repeat(3, 1fr);
         }
 
-        html,
-        body {
-            height: 100%;
+        .grid-4 {
+          grid-template-columns: repeat(4, 1fr);
         }
+      }
 
-        body {
-            margin: 0;
-            font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
-            color: var(--text);
-            background: var(--bg);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
+      .badge {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 20px;
+        background: rgba(37, 99, 235, 0.15);
+        color: #60a5fa;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        border: 1px solid rgba(37, 99, 235, 0.3);
+      }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
+      .badge-info-intox {
+        background: var(--accent-soft);
+        color: #fbbf24;
+        border: 1px solid var(--accent-border);
+      }
 
-        img,
-        video {
-            max-width: 100%;
-            display: block;
-        }
+      .topbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(5, 8, 17, 0.85);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--border-subtle);
+        transition: 0.3s;
+      }
 
-        h1,
-        h2,
-        h3 {
-            margin: 0 0 .6rem;
-            line-height: 1.12;
-        }
+      .topbar-inner {
+        width: min(1200px, 90vw);
+        margin: 0 auto;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
 
-        .muted {
-            color: var(--muted);
-        }
+      .brand {
+        font-size: 1.25rem;
+        font-weight: 900;
+        color: var(--text-heading);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
 
-        /* Topbar */
-        .topbar {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: #0d1025;
-            color: #fff;
-            border-bottom: 1px solid rgba(255, 255, 255, .08);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, .18);
-        }
+      .brand-icon {
+        width: 32px;
+        height: 32px;
+        background: var(--primary);
+        border-radius: 8px;
+        display: grid;
+        place-items: center;
+        font-size: 1rem;
+        color: #fff;
+      }
 
-        .topbar-inner {
-            height: 64px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 18px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+      .nav-links {
+        display: none;
+        gap: 30px;
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 900;
-            letter-spacing: .2px;
-        }
+      .nav-links a {
+        color: var(--text-body);
+        position: relative;
+        padding: 5px 0;
+      }
 
-        .brand .dot {
-            color: #7aa2ff;
-        }
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--text-heading);
+      }
 
-        .brand a {
-            color: #fff;
-        }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary);
+        transition: 0.3s ease;
+      }
 
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 8px;
+      .nav-links a.active::after,
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      @media (min-width: 900px) {
+        .nav-links {
+          display: flex;
         }
 
         .hamburger {
-            width: 44px;
-            height: 44px;
-            border: 1px solid rgba(255, 255, 255, .16);
-            background: rgba(255, 255, 255, .04);
-            display: grid;
-            place-items: center;
-            cursor: pointer;
-            border-radius: 12px;
-            transition: background .2s, transform .12s;
-        }
-
-        .hamburger:hover {
-            background: rgba(255, 255, 255, .1);
-            transform: translateY(-1px);
-        }
-
-        .hamburger span,
-        .hamburger span::before,
-        .hamburger span::after {
-            display: block;
-            width: 20px;
-            height: 2px;
-            background: #fff;
-            border-radius: 2px;
-            position: relative;
-            transition: transform .22s ease, top .22s ease, opacity .2s;
-        }
-
-        .hamburger span::before,
-        .hamburger span::after {
-            content: "";
-            position: absolute;
-            left: 0;
-        }
-
-        .hamburger span::before {
-            top: -6px;
-        }
-
-        .hamburger span::after {
-            top: 6px;
-        }
-
-        .hamburger[aria-expanded="true"] span {
-            background: transparent;
-        }
-
-        .hamburger[aria-expanded="true"] span::before {
-            top: 0;
-            transform: rotate(45deg);
-        }
-
-        .hamburger[aria-expanded="true"] span::after {
-            top: 0;
-            transform: rotate(-45deg);
-        }
-
-        .menu {
-            position: fixed;
-            right: 18px;
-            top: 78px;
-            width: min(92vw, 360px);
-            background: #101433;
-            color: #e8ecff;
-            border: 1px solid rgba(255, 255, 255, .08);
-            box-shadow: 0 18px 40px rgba(0, 0, 0, .35);
-            border-radius: 18px;
-            padding: 10px;
-            display: grid;
-            gap: 4px;
-            transform-origin: top right;
-            transform: scale(.98) translateY(-6px);
-            opacity: 0;
-            pointer-events: none;
-            transition: transform .16s ease, opacity .16s ease;
-        }
-
-        .menu.open {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-            pointer-events: auto;
-        }
-
-        .menu a {
-            padding: 12px 14px;
-            border-radius: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 700;
-            color: #f5f7ff;
-            border: 1px solid transparent;
-        }
-
-        .menu a:hover {
-            background: #161b45;
-            border-color: rgba(255, 255, 255, .06);
-        }
-
-        /* Layout */
-        main {
-            background: var(--bg);
-        }
-
-        .wrap {
-            width: min(1140px, 92vw);
-            margin: 0 auto;
-            padding: 36px 0 72px;
-        }
-
-        .page {
-            display: none;
-        }
-
-        .page.active {
-            display: block;
-        }
-
-        /* Accueil */
-        #home {
-            position: relative;
-            color: white;
-            /* on retire le dégradé pour voir la photo globale */
-            background: transparent;
-            min-height: calc(100vh - 64px);
-        }
-
-        #home .hero {
-            position: relative;
-            z-index: 1;
-            padding: clamp(48px, 9vw, 120px) 0 32px;
-            display: grid;
-            gap: 28px;
-        }
-
-        #home h1 {
-            font-size: clamp(36px, 7.2vw, 72px);
-            font-weight: 900;
-            letter-spacing: .2px;
-        }
-
-        #home h1 .accent {
-            color: #cfe0ff;
-            text-shadow: 0 8px 30px rgba(0, 0, 0, .25);
-        }
-
-        #home p.lead {
-            font-size: clamp(16px, 2.2vw, 20px);
-            max-width: 62ch;
-            color: #e8eeff;
-        }
-
-        .cta-row {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 16px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, .18);
-            background: #141943;
-            color: #eaf0ff;
-            font-weight: 800;
-            box-shadow: var(--shadow);
-            transition: transform .12s ease, box-shadow .12s ease, background .2s;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 16px 34px rgba(0, 0, 0, .28);
-        }
-
-        .btn.primary {
-            background: var(--accent-home);
-            color: white;
-            border: none;
-        }
-
-        .btn.ghost {
-            background: #0d1025;
-            color: #eaefff;
-            border-color: rgba(255, 255, 255, .18);
-        }
-
-        .btn.dark {
-            background: #141943;
-            color: #eaf0ff;
-            border: 1px solid #2a2f62;
-        }
-
-        .home-panels {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 16px;
-        }
-
-        .card {
-            grid-column: span 12;
-            background: rgba(255, 255, 255, .02);
-            border: 1px solid #1a1f44;
-            border-radius: var(--radius-lg);
-            box-shadow: 0 10px 28px rgba(0, 0, 0, .32);
-            padding: 18px;
-        }
-
-        @media (min-width: 900px) {
-            .card {
-                grid-column: span 6;
-            }
-        }
-
-        .card h3 {
-            margin-bottom: 8px;
-            font-size: 18px;
-            color: #fff;
-        }
-
-        .card .placeholder {
-            height: 200px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #151b41, #0f1432);
-            display: grid;
-            place-items: center;
-            color: #cfd7ff;
-            font-weight: 700;
-            letter-spacing: .2px;
-        }
-
-        /* Liste des derniers posts (Accueil) */
-        .home-list {
-            display: block;
-            margin: 0;
-            /* pas de marge qui déborde du card */
-            padding: 0;
-        }
-
-        .home-list a {
-            display: block;
-            padding: 8px 0;
-            border: 0;
-            /* pas d'encadré par item */
-            background: transparent;
-            border-radius: 0;
-            font-weight: 800;
-            color: #eaf0ff;
-            text-decoration: none;
-        }
-
-        .home-list a+a {
-            border-top: 1px dashed rgba(255, 255, 255, .12);
-            /* simple séparateur */
-        }
-
-        .home-list a:hover {
-            text-decoration: underline;
-            background: transparent;
-        }
-
-        /* si un jour "hidden" ne masque pas chez certains navigateurs */
-        #homeLatestPlaceholder[hidden] {
-            display: none !important;
-        }
-
-
-        /* Titres & sections */
-        .section-title {
-            display: flex;
-            align-items: baseline;
-            justify-content: space-between;
-            gap: 16px;
-            color: #cfd5ff;
-        }
-
-        .section-title h1 {
-            font-size: clamp(26px, 3.6vw, 40px);
-            font-weight: 900;
-            color: #fff;
-        }
-
-        /* PDFs */
-        #pdfs .wrap {
-            --accent: var(--accent-pdfs);
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 18px;
-        }
-
-        .pdf-card {
-            grid-column: span 12;
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 14px;
-        }
-
-        .pdf-card h3 {
-            margin: 6px 6px 10px;
-            color: var(--text-white);
-        }
-
-        .pdf-embed {
-            width: 100%;
-            height: 420px;
-            border: none;
-            border-radius: 10px;
-            background: #0f1221;
-        }
-
-        @media (min-width: 900px) {
-            .pdf-card {
-                grid-column: span 6;
-            }
-        }
-
-        /* Vidéos */
-        #videos .wrap {
-            --accent: var(--accent-videos);
-        }
-
-        details {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 12px 14px;
-            box-shadow: var(--shadow);
-        }
-
-        details+details {
-            margin-top: 14px;
-        }
-
-        summary {
-            list-style: none;
-            cursor: pointer;
-            font-weight: 900;
-            color: #eaf0ff;
-        }
-
-        summary::marker,
-        summary::-webkit-details-marker {
-            display: none;
-        }
-
-        .video-grid {
-            margin-top: 12px;
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 12px;
-        }
-
-        .video-card {
-            grid-column: span 12;
-            background: #0f1221;
-            border: 1px dashed #1c2450;
-            border-radius: 12px;
-            padding: 10px;
-        }
-
-        .video-card figcaption {
-            font-weight: 800;
-            margin: 6px;
-            color: #d9dfff;
-        }
-
-        .video-card video {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            background: #0b0e1a;
-        }
-
-        @media (min-width: 900px) {
-            .video-card {
-                grid-column: span 6;
-            }
-        }
-
-        /* Blog */
-        #blog .wrap {
-            --accent: var(--accent-blog);
-        }
-
-        .admin-bar {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            margin: 8px 0 12px;
-        }
-
-        .admin-bar .hint {
-            font-size: 12px;
-            opacity: .8;
-            color: #c9cdee;
-        }
-
-        .composer {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 14px;
-            box-shadow: var(--shadow);
-            display: none;
-            gap: 10px;
-        }
-
-        .composer input[type="text"],
-        .composer input[type="url"],
-        .composer textarea {
-            width: 100%;
-            padding: 12px;
-            border-radius: 12px;
-            border: 1px solid #343a63;
-            background: #0d1230;
-            color: #eaf0ff;
-        }
-
-        .composer textarea {
-            min-height: 100px;
-        }
-
-        .composer .row {
-            display: flex;
-            gap: 10px;
-        }
-
-        .feed {
-            margin-top: 16px;
-            display: grid;
-            gap: 12px;
-        }
-
-        .post {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 14px;
-            box-shadow: var(--shadow);
-        }
-
-        .post header {
-            display: flex;
-            align-items: baseline;
-            justify-content: space-between;
-            gap: 10px;
-        }
-
-        .post h3 {
-            margin: 0;
-            font-size: 18px;
-            color: #fff;
-        }
-
-        .lead-subtext {
-            margin: 6px 0 8px;
-            color: #cbd3ff;
-        }
-
-        .media {
-            margin-top: 8px;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid #1b234d;
-            background: #0b0e1a;
-        }
-
-        .reactions {
-            display: flex;
-            gap: 8px;
-            margin-top: 10px;
-            flex-wrap: wrap;
-        }
-
-        .reaction {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 10px;
-            border-radius: 999px;
-            background: #1a2148;
-            color: #e6ecff;
-            font-size: 13px;
-            font-weight: 800;
-            border: 1px solid #25306a;
-            cursor: pointer;
-        }
-
-        .reaction .count {
-            font-weight: 900;
-            font-size: 12px;
-            opacity: .9;
-        }
-
-        .reaction:not(.has-count) .count {
-            display: none;
-        }
-
-        .reaction.active {
-            background: #2a356e;
-            border-color: #3b4aa3;
-            box-shadow: 0 0 0 2px rgba(44, 119, 255, .15) inset;
-        }
-
-        .reaction[disabled] {
-            opacity: .6;
-            cursor: not-allowed;
-        }
-
-        .comments {
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px dashed #1d275a;
-        }
-
-        .comment {
-            padding: 8px 0;
-            border-bottom: 1px dashed #1d275a;
-        }
-
-        .comment:last-child {
-            border-bottom: none;
-        }
-
-        .comment form {
-            display: flex;
-            gap: 8px;
-        }
-
-        .comment input {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #343a63;
-            border-radius: 12px;
-            background: #0d1230;
-            color: #eaf0ff;
-        }
-
-        /* Contact */
-        #contact .wrap {
-            --accent: var(--accent-contact);
+          display: none !important;
+        }
+      }
+
+      .hamburger {
+        background: transparent;
+        border: 1px solid var(--border-highlight);
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        cursor: pointer;
+      }
+
+      .hamburger span {
+        width: 20px;
+        height: 2px;
+        background: #fff;
+        transition: 0.3s;
+      }
+
+      .mobile-menu {
+        position: fixed;
+        top: 80px;
+        right: 5vw;
+        width: 280px;
+        background: var(--bg-surface-elevated);
+        border: 1px solid var(--border-highlight);
+        border-radius: var(--radius-md);
+        padding: 10px;
+        box-shadow: var(--shadow-md);
+        opacity: 0;
+        transform: translateY(-10px);
+        pointer-events: none;
+        transition: 0.3s;
+        z-index: 99;
+      }
+
+      .mobile-menu.open {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      .mobile-menu a {
+        display: block;
+        padding: 12px 16px;
+        border-radius: var(--radius-sm);
+        font-weight: 600;
+        color: var(--text-heading);
+        margin-bottom: 5px;
+      }
+
+      .mobile-menu a:hover {
+        background: var(--border-subtle);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 12px 24px;
+        border-radius: var(--radius-sm);
+        font-weight: 600;
+        font-size: 0.95rem;
+        cursor: pointer;
+        border: none;
+        transition: 0.3s;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: #fff;
+        box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+      }
+
+      .btn-outline {
+        background: transparent;
+        border: 1px solid var(--border-highlight);
+        color: var(--text-heading);
+      }
+
+      .btn-outline:hover {
+        background: var(--border-subtle);
+        border-color: #fff;
+      }
+
+      .btn-sm {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+      }
+
+      main {
+        padding-top: 70px;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .page {
+        display: none;
+        animation: fadeIn 0.4s ease forwards;
+      }
+
+      .page.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .section-header {
+        margin-bottom: 50px;
+      }
+
+      .section-header h2 {
+        font-size: clamp(32px, 4vw, 48px);
+        margin-bottom: 15px;
+      }
+
+      .section-header p {
+        font-size: 1.1rem;
+        max-width: 700px;
+        color: var(--text-muted);
+      }
+
+      .category-title {
+        font-size: 1.5rem;
+        color: #fff;
+        margin: 60px 0 30px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+
+      .hero {
+        position: relative;
+        padding: 60px 0 100px;
+        overflow: hidden;
+      }
+
+      .hero-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        position: relative;
+        z-index: 2;
+      }
+
+      @media (min-width: 900px) {
+        .hero-wrap {
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+        }
+      }
+
+      .hero-content {
+        flex: 1;
+        max-width: 600px;
+      }
+
+      .hero-content h1 {
+        font-size: clamp(40px, 5vw, 68px);
+        line-height: 1.05;
+        margin-bottom: 24px;
+      }
+
+      .hero-content h1 span {
+        color: transparent;
+        -webkit-text-stroke: 1px var(--primary);
+        background: linear-gradient(90deg, #fff, #94a3b8);
+        -webkit-background-clip: text;
+        background-clip: text;
+      }
+
+      .hero-content p {
+        font-size: 1.15rem;
+        margin-bottom: 35px;
+        color: var(--text-body);
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+
+      .hero-visual {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        position: relative;
+      }
+
+      .hero-visual-glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        height: 80%;
+        background: radial-gradient(
+          circle,
+          var(--primary-glow) 0%,
+          transparent 70%
+        );
+        z-index: 0;
+        filter: blur(40px);
+      }
+
+      .hero-visual img {
+        position: relative;
+        z-index: 1;
+        max-width: 100%;
+        width: 450px;
+        object-fit: contain;
+        border-radius: var(--radius-lg);
+        filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.8));
+      }
+
+      .mission-section {
+        background: var(--bg-surface);
+        border-top: 1px solid var(--border-subtle);
+        border-bottom: 1px solid var(--border-subtle);
+      }
+
+      .mission-box {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .mission-box h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+
+      .mission-box p {
+        font-size: 1.1rem;
+        color: var(--text-muted);
+      }
+
+      .step-card {
+        background: var(--bg-surface-elevated);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-md);
+        padding: 30px;
+        position: relative;
+        overflow: hidden;
+        transition: 0.3s;
+      }
+
+      .step-card:hover {
+        border-color: var(--border-highlight);
+        transform: translateY(-5px);
+      }
+
+      .step-num {
+        font-size: 4rem;
+        font-weight: 900;
+        color: rgba(255, 255, 255, 0.03);
+        position: absolute;
+        top: -10px;
+        right: 10px;
+        line-height: 1;
+      }
+
+      .step-card h3 {
+        font-size: 1.25rem;
+        margin-bottom: 10px;
+        color: var(--text-heading);
+        position: relative;
+        z-index: 1;
+      }
+
+      .step-card p {
+        font-size: 0.95rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .feature-card {
+        padding: 30px;
+        border-left: 2px solid var(--border-subtle);
+      }
+
+      .feature-card:hover {
+        border-left-color: var(--primary);
+        background: linear-gradient(
+          90deg,
+          rgba(37, 99, 235, 0.05) 0%,
+          transparent 100%
+        );
+      }
+
+      .feature-icon {
+        font-size: 2rem;
+        margin-bottom: 15px;
+      }
+
+      .feature-card h3 {
+        margin-bottom: 10px;
+      }
+
+      .cta-banner {
+        background: linear-gradient(
+          135deg,
+          var(--bg-surface-elevated) 0%,
+          #0c152e 100%
+        );
+        border: 1px solid var(--border-highlight);
+        border-radius: var(--radius-lg);
+        padding: 50px 30px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-banner::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: var(--primary);
+      }
+
+      .resource-card {
+        background: var(--bg-surface-elevated);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-lg);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        transition: 0.3s;
+      }
+
+      .resource-card:hover {
+        border-color: var(--border-highlight);
+        box-shadow: var(--shadow-md);
+        transform: translateY(-4px);
+      }
+
+      .card-body {
+        padding: 24px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .card-body .badge {
+        align-self: flex-start;
+        margin-bottom: 12px;
+      }
+
+      .card-body h3 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+      }
+
+      .card-body p.desc {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-bottom: 20px;
+        flex: 1;
+      }
+
+      .pdf-preview-wrapper {
+        width: 100%;
+        height: 280px;
+        background: #000;
+        border-top: 1px solid var(--border-subtle);
+        border-bottom: 1px solid var(--border-subtle);
+        position: relative;
+      }
+
+      .pdf-preview-wrapper iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      .video-wrapper {
+        width: 100%;
+        aspect-ratio: 16/9;
+        background: #000;
+      }
+
+      .video-wrapper video,
+      .video-wrapper iframe {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border: 0;
+      }
+
+      .card-footer {
+        padding: 20px 24px;
+        display: flex;
+        gap: 10px;
+        background: rgba(0, 0, 0, 0.2);
+      }
+
+      .card-footer .btn {
+        flex: 1;
+      }
+
+      .short-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      @media (min-width: 768px) {
+        .short-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 1100px) {
+        .short-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      .short-card {
+        background: var(--bg-surface-elevated);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        transition: 0.3s;
+      }
+
+      .short-card:hover {
+        border-color: var(--border-highlight);
+        box-shadow: var(--shadow-md);
+        transform: translateY(-4px);
+      }
+
+      .short-card-head {
+        padding: 20px 20px 14px;
+      }
+
+      .short-card-head h3 {
+        font-size: 1.1rem;
+        margin: 10px 0 8px;
+      }
+
+      .short-card-head p {
+        font-size: 0.92rem;
+        color: var(--text-muted);
+      }
+
+      .short-video-frame {
+        width: 100%;
+        aspect-ratio: 9 / 16;
+        background: #000;
+        border-top: 1px solid var(--border-subtle);
+        border-bottom: 1px solid var(--border-subtle);
+        overflow: hidden;
+      }
+
+      .short-video-frame video,
+      .short-video-frame iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        object-fit: cover;
+        display: block;
+      }
+
+      .short-card-footer {
+        padding: 16px 20px 20px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .short-card-footer .btn {
+        flex: 1;
+        min-width: 140px;
+      }
+
+      .admin-bar {
+        background: var(--bg-surface);
+        padding: 15px 20px;
+        border-radius: var(--radius-md);
+        border: 1px dashed var(--border-highlight);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .composer {
+        background: var(--bg-surface-elevated);
+        padding: 24px;
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border-highlight);
+        margin-bottom: 40px;
+        display: none;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        background: var(--bg-base);
+        border: 1px solid var(--border-subtle);
+        color: var(--text-heading);
+        padding: 14px 16px;
+        border-radius: var(--radius-sm);
+        font-family: inherit;
+        transition: 0.3s;
+      }
+
+      input:focus,
+      textarea:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+      }
+
+      .post {
+        background: var(--bg-surface-elevated);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-lg);
+        padding: 30px;
+        margin-bottom: 24px;
+      }
+
+      .post-header h3 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+
+      .post-desc {
+        color: var(--text-body);
+        margin-bottom: 20px;
+        font-size: 1.05rem;
+      }
+
+      .post-media {
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        border: 1px solid var(--border-subtle);
+        margin-bottom: 20px;
+      }
+
+      .reactions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+
+      .reaction {
+        background: var(--bg-surface);
+        border: 1px solid var(--border-subtle);
+        padding: 8px 16px;
+        border-radius: 30px;
+        color: var(--text-heading);
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.2s;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .reaction.active {
+        background: rgba(37, 99, 235, 0.1);
+        border-color: var(--primary);
+        color: var(--primary);
+      }
+
+      .comments {
+        padding-top: 20px;
+      }
+
+      .comment {
+        padding: 12px 0;
+        border-bottom: 1px dashed var(--border-subtle);
+        font-size: 0.95rem;
+      }
+
+      .comment-form {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      @media (min-width: 900px) {
+        .contact-grid {
+          grid-template-columns: 1fr 1.5fr;
+        }
+      }
+
+      form.contact {
+        background: var(--bg-surface-elevated);
+        padding: 40px;
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border-subtle);
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(5px);
+        z-index: 200;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .modal.open {
+        display: flex;
+      }
+
+      .modal-card {
+        background: var(--bg-surface-elevated);
+        padding: 30px;
+        border-radius: var(--radius-lg);
+        width: 100%;
+        border: 1px solid var(--border-highlight);
+      }
+
+      .modal-card.sm {
+        max-width: 400px;
+      }
+
+      .modal-card.lg {
+        max-width: 1000px;
+        height: 90vh;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+      }
+
+      .modal-card.lg iframe {
+        flex: 1;
+        border-radius: var(--radius-sm);
+        border: none;
+        background: #fff;
+        margin-top: 15px;
+      }
+
+      footer {
+        border-top: 1px solid var(--border-subtle);
+        padding: 40px 20px;
+        text-align: center;
+        font-size: 0.9rem;
+      }
+
+      .socials {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      .socials a {
+        width: 44px;
+        height: 44px;
+        background: var(--bg-surface-elevated);
+        border: 1px solid var(--border-subtle);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        transition: 0.3s;
+      }
+
+      .socials a:hover {
+        background: var(--primary);
+        border-color: var(--primary);
+        transform: translateY(-3px);
+      }
+
+      .socials svg {
+        width: 20px;
+        height: 20px;
+        fill: #fff;
+      }
+
+      .text-success {
+        color: var(--success);
+        font-weight: 600;
+        margin-top: 10px;
+      }
+
+      .text-danger {
+        color: var(--danger);
+        font-weight: 600;
+        margin-top: 10px;
+      }
+
+      @media (max-width: 767px) {
+        .comment-form,
+        .card-footer,
+        .short-card-footer {
+          flex-direction: column;
         }
 
         form.contact {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 16px;
-            box-shadow: var(--shadow);
-            display: grid;
-            gap: 12px;
+          padding: 24px;
         }
-
-        .field {
-            display: grid;
-            gap: 6px;
-        }
-
-        label {
-            font-weight: 800;
-            color: #dbe2ff;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        textarea {
-            padding: 12px;
-            border: 1px solid #343a63;
-            border-radius: 12px;
-            font: inherit;
-            background: #0d1230;
-            color: #eaf0ff;
-        }
-
-        textarea {
-            min-height: 140px;
-        }
-
-        /* Footer */
-        footer {
-            padding: 28px 0 42px;
-            display: grid;
-            place-items: center;
-            color: #e6ebff;
-        }
-
-        .socials {
-            display: flex;
-            gap: 14px;
-        }
-
-        .socials a {
-            width: 42px;
-            height: 42px;
-            display: grid;
-            place-items: center;
-            border-radius: 12px;
-            background: #0d1025;
-            border: 1px solid rgba(255, 255, 255, .1);
-            transition: transform .12s ease, background .2s;
-        }
-
-        .socials a:hover {
-            transform: translateY(-3px);
-            background: #101433;
-        }
-
-        .socials svg {
-            width: 22px;
-            height: 22px;
-            fill: white;
-        }
-
-        /* Modal Auth */
-        .modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, .5);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 120;
-        }
-
-        .modal.open {
-            display: flex;
-        }
-
-        .modal-card {
-            width: min(92vw, 420px);
-            background: #101433;
-            color: #eef3ff;
-            border: 1px solid rgba(255, 255, 255, .08);
-            box-shadow: 0 18px 40px rgba(0, 0, 0, .35);
-            border-radius: 18px;
-            padding: 18px;
-        }
-
-        .modal-card h3 {
-            font-size: 20px;
-            color: #fff;
-        }
-
-        .modal-card .field label {
-            color: #c9cdee;
-        }
-
-        .modal-card input {
-            width: 100%;
-            padding: 12px;
-            border-radius: 12px;
-            border: 1px solid #343a63;
-            background: #0d1230;
-            color: #eaf0ff;
-        }
-
-        .modal-card .row {
-            display: flex;
-            gap: 10px;
-            margin-top: 12px;
-        }
-
-        /* Accueil : la carte "Dernières publications" prend toute la largeur */
-        #home .home-panels .card {
-            grid-column: 1 / -1;
-        }
-
-        /* ---- Fond global (photo partout) ---- */
-        .site-bg {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .site-bg::before {
-            content: "";
-            position: absolute;
-            inset: -8px;
-            background-image: var(--home-bg);
-            background-size: cover;
-            background-position: center 32%;
-            filter: blur(8px) saturate(1.05) brightness(.8);
-            transform: scale(1.06);
-            opacity: .55;
-        }
-
-        /* Le contenu passe au-dessus du fond global et on le rend transparent */
-        main {
-            position: relative;
-            z-index: 1;
-            background: transparent;
-        }
-
-        /* Utils */
-        .ok {
-            color: #1aa36f;
-            font-weight: 700;
-        }
-
-        .err {
-            color: #d23c3c;
-            font-weight: 700;
-        }
+      }
     </style>
-</head>
+  </head>
 
-<body data-theme="home">
-    <!-- NAV -->
+  <body>
     <header class="topbar">
-        <div class="topbar-inner">
-            <div class="brand" role="banner"><a href="#home" id="brandLink">Dans l’œil de l’arbitrage <span
-                        class="dot">•</span></a></div>
-            <div class="nav-actions">
-                <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu"
-                    aria-expanded="false"><span></span></button>
-            </div>
+      <div class="topbar-inner">
+        <div class="brand">
+          <div class="brand-icon">👁</div>
+          <a href="#home" id="brandLink">L'œil de l'arbitrage</a>
         </div>
-        <nav id="menu" class="menu" aria-label="Navigation principale">
-            <a href="#home" data-section="home">Accueil <span>→</span></a>
-            <a href="#pdfs" data-section="pdfs">Petites formations en PDF <span>→</span></a>
-            <a href="#videos" data-section="videos">Liens formations vidéos <span>→</span></a>
-            <a href="#blog" data-section="blog">Blog <span>→</span></a>
-            <a href="#contact" data-section="contact">Contact <span>→</span></a>
+
+        <nav class="nav-links">
+          <a href="#home" data-section="home">Accueil</a>
+          <a href="#pdfs" data-section="pdfs">Fiches Pédagogiques</a>
+          <a href="#videos" data-section="videos">Vidéos</a>
+          <a href="#formats-courts" data-section="info-intox">Formats Courts</a>
+          <a href="#blog" data-section="blog">Blog & Débats</a>
+          <a href="#contact" data-section="contact">Contact</a>
         </nav>
+
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <nav id="menu" class="mobile-menu">
+        <a href="#home" data-section="home">Accueil</a>
+        <a href="#pdfs" data-section="pdfs">Fiches Pédagogiques</a>
+        <a href="#videos" data-section="videos">Vidéos</a>
+        <a href="#formats-courts" data-section="info-intox">Formats Courts</a>
+        <a href="#blog" data-section="blog">Blog & Débats</a>
+        <a href="#contact" data-section="contact">Contact</a>
+      </nav>
     </header>
 
-    <!-- Fond global (même image partout) -->
-    <div class="site-bg" aria-hidden="true"></div>
-
     <main>
-        <!-- ACCUEIL -->
-        <section id="home" class="page active" role="region" aria-label="Accueil">
-            <!-- hero-bg supprimé : on utilise .site-bg -->
-            <div class="wrap hero">
-                <h1><span class="accent">Dans l’œil de l’arbitrage&nbsp;!</span></h1>
-                <p class="lead">Partage de <strong>petites formations</strong>, de <strong>liens vidéos</strong>, un
-                    <strong>blog</strong> pour débattre, et un <strong>contact</strong> direct.
-                </p>
-                <div class="cta-row">
-                    <a class="btn primary" href="#pdfs">Voir les PDF</a>
-                    <a class="btn ghost" href="#blog">Aller au blog</a>
-                </div>
-
-                <div class="home-panels" style="margin-top: 18px;">
-                    <article class="card">
-                        <h3>Dernières publications (Blog)</h3>
-                        <div id="homeLatest">
-                            <div class="placeholder" id="homeLatestPlaceholder">— Chargement des titres… —</div>
-                            <div class="home-list" id="homeLatestList" hidden></div>
-                        </div>
-                    </article>
-                </div>
-
-                <footer>
-                    <div class="socials" aria-label="Réseaux sociaux">
-                        <a href="https://www.instagram.com/charlene_arbitreoff/" target="_blank" rel="noopener"
-                            aria-label="Instagram">
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <path
-                                    d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 4.5A5.5 5.5 0 1 1 6.5 14 5.5 5.5 0 0 1 12 8.5zm0 2A3.5 3.5 0 1 0 15.5 14 3.5 3.5 0 0 0 12 10.5zM18 6.2a1.2 1.2 0 1 1-1.2 1.2A1.2 1.2 0 0 1 18 6.2z" />
-                            </svg>
-                        </a>
-                        <a href="https://www.tiktok.com/@charlene_arbitreoff?lang=fr" target="_blank" rel="noopener"
-                            aria-label="TikTok">
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <path
-                                    d="M14.5 3h2a5.5 5.5 0 0 0 5.5 5.5v2a7.5 7.5 0 0 1-5.5-2.3V15a6 6 0 1 1-6-6 6.1 6.1 0 0 1 1.5.2V11a3.9 3.9 0 0 0-1.5-.3 4 4 0 1 0 4 4z" />
-                            </svg>
-                        </a>
-                        <a href="https://www.youtube.com/@charlene_arbitreoff" target="_blank" rel="noopener"
-                            aria-label="YouTube">
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <path
-                                    d="M23 12s0-3.4-.4-5a3 3 0 0 0-2.1-2.1C18.9 4.3 12 4.3 12 4.3s-6.9 0-8.5.6A3 3 0 0 0 1.4 7C1 8.6 1 12 1 12s0 3.4.4 5a3 3 0 0 0 2.1 2.1c1.6.6 8.5.6 8.5.6s6.9 0 8.5-.6A3 3 0 0 0 22.6 17c.4-1.6.4-5 .4-5zM10 15.5v-7l6 3.5z" />
-                            </svg>
-                        </a>
-                    </div>
-                </footer>
+      <section id="home" class="page active">
+        <div class="hero">
+          <div class="wrap hero-wrap">
+            <div class="hero-content">
+              <span class="badge" style="margin-bottom: 15px"
+                >Le centre de ressources</span
+              >
+              <h1>Devenez l'arbitre <br /><span>que le jeu mérite.</span></h1>
+              <p>
+                Plongez au cœur de la mécanique du basketball. Au-delà du coup
+                de sifflet, apprenez à lire le jeu, gérer les acteurs et
+                affirmer votre posture à travers nos fiches, analyses expertes
+                et formats courts pédagogiques.
+              </p>
+              <div class="hero-actions">
+                <a href="#pdfs" class="btn btn-primary">Consulter les Fiches</a>
+                <a href="#blog" class="btn btn-outline">Rejoindre les Débats</a>
+              </div>
             </div>
-        </section>
 
-        <!-- PDFS -->
-        <section id="pdfs" class="page" role="region" aria-label="Petites formations en PDF">
-            <div class="wrap">
-                <div class="section-title">
-                    <h1>Petites formations en PDF</h1>
-                </div>
-                <div class="grid" style="margin-top:14px;">
-                    <article class="pdf-card">
-                        <h3>Exemple : Gestes officiels – Fautes personnelles</h3>
-                        <iframe class="pdf-embed" src="assets/1.pdf#toolbar=0" title="PDF 1"></iframe>
-                        <div style="display:flex;gap:8px;margin-top:10px;">
-                            <<<<<<< HEAD <a class="btn" href="assets/1.pdf" download>Télécharger</a>
-                                =======
-                                <a class="btn" href="assets/2.pdf" download>Télécharger</a>
-                                >>>>>>> a113116 (Initial commit : site Arbitrage)
-                        </div>
-                    </article>
-
-                    <article class="pdf-card">
-                        <h3>Exemple : Mécanique à 2 arbitres</h3>
-                        <iframe class="pdf-embed" src="assets/2.pdf#toolbar=0" title="PDF 2"></iframe>
-                        <div style="display:flex;gap:8px;margin-top:10px;">
-                            <a class="btn" href="assets/2.pdf" download>Télécharger</a>
-                        </div>
-                    </article>
-                </div>
+            <div class="hero-visual">
+              <div class="hero-visual-glow"></div>
+              <img src="assets/referee.png" alt="Arbitre de basketball" />
             </div>
-        </section>
+          </div>
+        </div>
 
-        <!-- VIDEOS -->
-        <section id="videos" class="page" role="region" aria-label="Liens formations vidéos">
-            <div class="wrap">
-                <div class="section-title">
-                    <h1>Liens formations vidéos</h1>
-                </div>
+        <div class="mission-section">
+          <div class="wrap mission-box">
+            <h2>Comprendre avant de sanctionner</h2>
+            <p>
+              L'arbitrage moderne ne se résume pas à l'application stricte d'un
+              règlement. C'est une question de ressenti, de communication, de
+              placement et de pédagogie. Ce site a été créé pour offrir aux
+              arbitres de tous niveaux des ressources concrètes pour progresser.
+            </p>
+          </div>
+        </div>
 
-                <details open>
-                    <summary>Gestuelle & signalétique</summary>
-                    <div class="video-grid">
-                        <figure class="video-card">
-                            <figcaption>Vidéo gestuelle faute</figcaption>
-                            <video controls preload="metadata" src="assets/videos/1.mp4"></video>
-                        </figure>
-                        <figure class="video-card">
-                            <figcaption>Vidéo gestuelle faute</figcaption>
-                            <video controls preload="metadata" src="assets/videos/2.mp4"></video>
-                        </figure>
-                    </div>
-                </details>
+        <div class="wrap">
+          <div class="section-header text-center">
+            <h2>Commencer par ici</h2>
+            <p style="margin: 0 auto">
+              Un parcours structuré pour développer vos compétences, de la
+              maîtrise des bases jusqu'à l'expertise de la gestion de match.
+            </p>
+          </div>
 
-                <details open>
-                    <summary>Explications</summary>
-                    <div class="video-grid">
-                        <figure class="video-card">
-                            <figcaption>La gestion des acteurs</figcaption>
-                            <video controls preload="metadata" src="assets/videos/3.mp4"></video>
-                        </figure>
-                    </div>
-                </details>
+          <div class="grid-4" style="margin-bottom: 80px">
+            <div class="step-card">
+              <div class="step-num">01</div>
+              <h3>Maîtriser les Règles</h3>
+              <p>
+                Étudiez les fiches sur les fautes spéciales, les violations et
+                leurs réparations exactes.
+              </p>
             </div>
-        </section>
 
-        <!-- BLOG -->
-        <section id="blog" class="page" role="region" aria-label="Blog & débats">
-            <div class="wrap">
-                <div class="section-title">
-                    <h1>Blog & débats</h1>
-                </div>
-
-                <div class="admin-bar">
-                    <button class="btn dark" id="adminLoginBtn">Se connecter (admin)</button>
-                    <button class="btn" id="adminLogoutBtn" style="display:none;">Se déconnecter</button>
-                    <span class="hint" id="authHint">Non connecté</span>
-                </div>
-
-                <div class="composer" id="composer" aria-label="Publier un post (admin)">
-                    <input type="text" id="subject" placeholder="Sujet du post (titre)" />
-                    <input type="url" id="videoUrl" placeholder="Lien vidéo (YouTube, MP4, MOV…)" />
-                    <textarea id="subtext" placeholder="Texte pour accompagner le sujet (court)"></textarea>
-                    <div class="row">
-                        <button class="btn primary" id="publishBtn">Publier</button>
-                    </div>
-                </div>
-
-                <div id="feed" class="feed" aria-live="polite"></div>
+            <div class="step-card">
+              <div class="step-num">02</div>
+              <h3>Communiquer</h3>
+              <p>
+                Découvrez comment moduler votre coup de sifflet et perfectionner
+                votre gestuelle.
+              </p>
             </div>
-        </section>
 
-        <!-- CONTACT -->
-        <section id="contact" class="page" role="region" aria-label="Contact">
-            <div class="wrap">
-                <div class="section-title">
-                    <h1>Contact</h1>
-                </div>
-
-                <form class="contact" id="contactForm">
-                    <div class="field">
-                        <label for="prenom">Prénom</label>
-                        <input type="text" id="prenom" name="Prenom" required />
-                    </div>
-                    <div class="field">
-                        <label for="nom">Nom</label>
-                        <input type="text" id="nom" name="Nom" required />
-                    </div>
-                    <div class="field">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="Email" required />
-                    </div>
-                    <div class="field">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="Message" required></textarea>
-                    </div>
-                    <button class="btn primary" type="submit" id="contactSubmit">Envoyer</button>
-                    <p id="contactStatus" class="muted" aria-live="polite"></p>
-                </form>
+            <div class="step-card">
+              <div class="step-num">03</div>
+              <h3>Gérer le Match</h3>
+              <p>
+                Apprenez à interagir efficacement avec les joueurs, les coachs,
+                les OTM et le public.
+              </p>
             </div>
-        </section>
+
+            <div class="step-card">
+              <div class="step-num">04</div>
+              <h3>Analyser</h3>
+              <p>
+                Rejoignez le blog et les formats courts pour confronter
+                les idées reçues et aiguiser votre lecture des situations.
+              </p>
+            </div>
+          </div>
+
+          <div class="section-header text-center">
+            <h2>Ce que vous trouverez ici</h2>
+          </div>
+
+          <div class="grid-4" style="margin-bottom: 80px">
+            <div class="feature-card">
+              <div class="feature-icon">📄</div>
+              <h3>Fiches Synthétiques PDF</h3>
+              <p>
+                Des résumés clairs, visuels et téléchargeables à emmener partout
+                avec vous dans votre sac d'arbitre.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🎥</div>
+              <h3>Études Vidéos</h3>
+              <p>
+                L'analyse d'images est le meilleur outil de progression.
+                Retrouvez des cas réels décortiqués.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">⚡</div>
+              <h3>Formats Courts</h3>
+              <p>
+                Des formats courts de 30 secondes pour démonter les idées reçues
+                et clarifier rapidement les règles.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">💬</div>
+              <h3>Blog & Débats</h3>
+              <p>
+                Un espace de réflexion modéré pour échanger sur des situations
+                complexes ou inhabituelles.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="cta-banner"
+            style="
+              background: var(--bg-surface);
+              text-align: left;
+              margin-bottom: 80px;
+            "
+          >
+            <h2 style="margin-bottom: 20px">Dernières analyses (Blog)</h2>
+            <div id="homeLatestPlaceholder" class="text-muted">
+              Chargement des données en direct...
+            </div>
+            <div
+              id="homeLatestList"
+              style="display: flex; flex-direction: column; gap: 15px"
+              hidden
+            ></div>
+          </div>
+
+          <div class="cta-banner">
+            <h2>Besoin d'un accompagnement spécifique ?</h2>
+            <p
+              style="
+                color: var(--text-body);
+                max-width: 600px;
+                margin: 15px auto 25px;
+              "
+            >
+              Que vous soyez un club cherchant une intervention ou un arbitre
+              avec une question technique, n'hésitez pas à me solliciter.
+            </p>
+            <a href="#contact" class="btn btn-primary"
+              >Me contacter directement</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section id="pdfs" class="page">
+        <div class="wrap">
+          <div class="section-header">
+            <h2>Fiches Pédagogiques</h2>
+            <p>
+              La bible de l'arbitre. Consultez directement l'aperçu ou
+              téléchargez le PDF pour réviser avant vos rencontres.
+            </p>
+          </div>
+          <div id="pdfContainer"></div>
+        </div>
+      </section>
+
+      <section id="videos" class="page">
+        <div class="wrap">
+          <div class="section-header">
+            <h2>Bibliothèque Vidéo</h2>
+            <p>
+              Apprendre par l'image. Visualisez la gestuelle exacte et
+              l'application des consignes en conditions réelles.
+            </p>
+          </div>
+          <div id="videoContainer"></div>
+        </div>
+      </section>
+
+      <section id="info-intox" class="page">
+        <div class="wrap">
+          <div class="section-header">
+            <span class="badge badge-info-intox" style="margin-bottom: 14px"
+              >Format court</span
+            >
+            <h2>Formats Courts</h2>
+            <p>
+              Des formats courts pour corriger les idées reçues, clarifier des
+              règles et mieux comprendre les situations de match en moins de 30
+              secondes.
+            </p>
+          </div>
+          <div id="infoIntoxContainer"></div>
+        </div>
+      </section>
+
+      <section id="blog" class="page">
+        <div class="wrap">
+          <div class="section-header">
+            <h2>Masterclass & Débats</h2>
+            <p>
+              L'espace d'analyse de situations. Connectez-vous pour partager
+              votre point de vue sur les cas exposés.
+            </p>
+          </div>
+
+          <div class="admin-bar">
+            <span
+              id="authHint"
+              style="font-weight: 600; color: var(--text-heading)"
+              >Statut : Vérification...</span
+            >
+            <div>
+              <button class="btn btn-outline btn-sm" id="adminLoginBtn">
+                Connexion Admin
+              </button>
+              <button
+                class="btn btn-outline btn-sm"
+                id="adminLogoutBtn"
+                style="
+                  display: none;
+                  border-color: var(--danger);
+                  color: var(--danger);
+                "
+              >
+                Déconnexion
+              </button>
+            </div>
+          </div>
+
+          <div class="composer" id="composer">
+            <h3>Nouvelle Analyse</h3>
+            <input
+              type="text"
+              id="subject"
+              placeholder="Titre de la situation étudiée"
+            />
+            <input
+              type="url"
+              id="videoUrl"
+              placeholder="Lien vidéo justificatif (YouTube, MP4...)"
+            />
+            <textarea
+              id="subtext"
+              placeholder="Description de l'action, point de règlement ou question ouverte..."
+              rows="4"
+            ></textarea>
+            <button
+              class="btn btn-primary"
+              id="publishBtn"
+              style="align-self: flex-start"
+            >
+              Publier l'analyse
+            </button>
+          </div>
+
+          <div id="feed"></div>
+        </div>
+      </section>
+
+      <section id="contact" class="page">
+        <div class="wrap">
+          <div class="section-header">
+            <h2>Contact & Interventions</h2>
+          </div>
+
+          <div class="contact-grid">
+            <div>
+              <h3 style="margin-bottom: 15px">Discutons arbitrage</h3>
+              <p style="margin-bottom: 15px">
+                Une question pointue sur un règlement ? Une demande
+                d'intervention dans votre club pour former vos jeunes arbitres ?
+              </p>
+              <p>
+                Remplissez le formulaire, je prendrai le temps de vous lire et
+                de vous répondre avec précision.
+              </p>
+            </div>
+
+            <form class="contact" id="contactForm">
+              <div style="display: flex; gap: 15px; flex-wrap: wrap">
+                <input
+                  type="text"
+                  id="prenom"
+                  placeholder="Prénom"
+                  required
+                  style="flex: 1; min-width: 180px"
+                />
+                <input
+                  type="text"
+                  id="nom"
+                  placeholder="Nom"
+                  required
+                  style="flex: 1; min-width: 180px"
+                />
+              </div>
+
+              <input
+                type="email"
+                id="email"
+                placeholder="Adresse e-mail valide"
+                required
+              />
+
+              <textarea
+                id="message"
+                placeholder="Détaillez votre demande ici..."
+                rows="6"
+                required
+              ></textarea>
+
+              <button class="btn btn-primary" type="submit" id="contactSubmit">
+                Envoyer le message
+              </button>
+              <p id="contactStatus" class="text-center"></p>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div class="socials">
+          <a
+            href="https://www.instagram.com/charlene_arbitreoff/"
+            target="_blank"
+            rel="noopener"
+            ><svg viewBox="0 0 24 24">
+              <path
+                d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 4.5A5.5 5.5 0 1 1 6.5 14 5.5 5.5 0 0 1 12 8.5zm0 2A3.5 3.5 0 1 0 15.5 14 3.5 3.5 0 0 0 12 10.5zM18 6.2a1.2 1.2 0 1 1-1.2 1.2A1.2 1.2 0 0 1 18 6.2z"
+              /></svg
+          ></a>
+          <a
+            href="https://www.tiktok.com/@charlene_arbitreoff?lang=fr"
+            target="_blank"
+            rel="noopener"
+            ><svg viewBox="0 0 24 24">
+              <path
+                d="M14.5 3h2a5.5 5.5 0 0 0 5.5 5.5v2a7.5 7.5 0 0 1-5.5-2.3V15a6 6 0 1 1-6-6 6.1 6.1 0 0 1 1.5.2V11a3.9 3.9 0 0 0-1.5-.3 4 4 0 1 0 4 4z"
+              /></svg
+          ></a>
+          <a
+            href="https://www.youtube.com/@charlene_arbitreoff"
+            target="_blank"
+            rel="noopener"
+            ><svg viewBox="0 0 24 24">
+              <path
+                d="M23 12s0-3.4-.4-5a3 3 0 0 0-2.1-2.1C18.9 4.3 12 4.3 12 4.3s-6.9 0-8.5.6A3 3 0 0 0 1.4 7C1 8.6 1 12 1 12s0 3.4.4 5a3 3 0 0 0 2.1 2.1c1.6.6 8.5.6 8.5.6s6.9 0 8.5-.6A3 3 0 0 0 22.6 17c.4-1.6.4-5 .4-5zM10 15.5v-7l6 3.5z"
+              /></svg
+          ></a>
+        </div>
+        <p>© Dans l'œil de l'arbitrage. Centre de ressources pédagogiques.</p>
+      </footer>
     </main>
 
-    <!-- Modal de connexion admin -->
-    <div class="modal" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
-        <div class="modal-card">
-            <h3 id="authTitle">Connexion administrateur</h3>
-            <div class="field" style="margin-top:10px;">
-                <label for="authEmail">Email</label>
-                <input id="authEmail" type="email" placeholder="votre@email.fr" autocomplete="username" />
-            </div>
-            <div class="field">
-                <label for="authPass">Mot de passe</label>
-                <input id="authPass" type="password" placeholder="••••••••" autocomplete="current-password" />
-            </div>
-            <div class="row">
-                <button class="btn primary" id="authSubmit">Se connecter</button>
-                <button class="btn" id="authCancel">Annuler</button>
-            </div>
+    <div class="modal" id="pdfModal">
+      <div class="modal-card lg">
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+          "
+        >
+          <h3 id="pdfModalTitle" style="margin: 0">Fiche détaillée</h3>
+          <button class="btn btn-outline btn-sm" onclick="closePdfModal()">
+            Fermer
+          </button>
         </div>
+        <iframe id="pdfModalIframe" src=""></iframe>
+      </div>
     </div>
 
-    <!-- EmailJS SDK + config -->
-    <script defer src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <div class="modal" id="authModal">
+      <div class="modal-card sm">
+        <h3 style="margin-bottom: 20px; text-align: center">
+          Accès Administrateur
+        </h3>
+        <div style="display: flex; flex-direction: column; gap: 15px">
+          <input id="authEmail" type="email" placeholder="Email" />
+          <input id="authPass" type="password" placeholder="Mot de passe" />
+          <div style="display: flex; gap: 10px; margin-top: 10px">
+            <button class="btn btn-primary" id="authSubmit" style="flex: 1">
+              Connexion
+            </button>
+            <button class="btn btn-outline" id="authCancel" style="flex: 1">
+              Annuler
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script>
-        // Config EmailJS
-        window.EMAILJS = {
-            enabled: true,
-            publicKey: "NaUOkYDYTpF6_arpE",
-            serviceId: "service_2ia5bat",
-            templateId: "template_pwt63wf"
-        };
+      const pdfData = [
+        {
+          cat: "Fautes & Bases",
+          items: [
+            {
+              title: "La faute technique",
+              desc: "Comprendre les critères de la faute technique et son application disciplinaire.",
+              file: "assets/1.pdf",
+            },
+            {
+              title: "La faute antisportive",
+              desc: "Les 5 critères précis (C1 à C5) définissant un contact antisportif.",
+              file: "assets/2.pdf",
+            },
+            {
+              title: "La faute offensive",
+              desc: "Analyse du cylindre et du principe de verticalité pour le porteur de balle.",
+              file: "assets/3.pdf",
+            },
+            {
+              title: "Types et natures de fautes",
+              desc: "Classification générale des contacts illégaux sur le terrain.",
+              file: "assets/7.pdf",
+            },
+          ],
+        },
+        {
+          cat: "Communication & Gestuelle",
+          items: [
+            {
+              title: "Les différents sifflets",
+              desc: "L'art de moduler son coup de sifflet selon la gravité de l'action.",
+              file: "assets/4.pdf",
+            },
+            {
+              title: "La modulation du sifflet",
+              desc: "Exercices pratiques pour faire de votre sifflet votre premier outil de communication.",
+              file: "assets/11.pdf",
+            },
+            {
+              title: "Annoncer une violation",
+              desc: "Séquence exacte de la mécanique d'annonce vers la table de marque.",
+              file: "assets/6.pdf",
+            },
+            {
+              title: "Annoncer une faute (Partie 1)",
+              desc: "Gestuelle du numéro, nature de la faute et nombre de lancers.",
+              file: "assets/8.pdf",
+            },
+            {
+              title: "Annoncer une faute (Partie 2)",
+              desc: "Cas complexes et annonces multiples.",
+              file: "assets/9.pdf",
+            },
+            {
+              title: "Signaux administratifs",
+              desc: "Remplacements, temps-morts et communication avec les OTM.",
+              file: "assets/10.pdf",
+            },
+          ],
+        },
+        {
+          cat: "Mécanique & Placement",
+          items: [
+            {
+              title: "Zones de responsabilités",
+              desc: "La couverture du terrain à 2 ou 3 arbitres.",
+              file: "assets/14.pdf",
+            },
+            {
+              title: "Réparations et trapèze",
+              desc: "Placement exact lors des lancers-francs.",
+              file: "assets/15.pdf",
+            },
+            {
+              title: "Les différentes violations",
+              desc: "Marcher, reprises, retours en zone : lecture et jugement.",
+              file: "assets/5.pdf",
+            },
+          ],
+        },
+        {
+          cat: "Gestion de Match & Environnement",
+          items: [
+            {
+              title: "Gestion des joueurs",
+              desc: "Désamorcer les conflits et faire preuve de pédagogie.",
+              file: "assets/18.pdf",
+            },
+            {
+              title: "Gestion des coachs",
+              desc: "Maintenir le dialogue sans perdre l'autorité de la rencontre.",
+              file: "assets/19.pdf",
+            },
+            {
+              title: "Gestion des OTM",
+              desc: "Le travail d'équipe avec la table de marque.",
+              file: "assets/20.pdf",
+            },
+            {
+              title: "Gestion du public",
+              desc: "Comment réagir dans une salle sous haute tension.",
+              file: "assets/21.pdf",
+            },
+            {
+              title: "Arbitrer dans une salle pleine",
+              desc: "Outils mentaux pour rester concentré dans le bruit.",
+              file: "assets/23.pdf",
+            },
+          ],
+        },
+        {
+          cat: "Préparation & Postures",
+          items: [
+            {
+              title: "Avant et après le match",
+              desc: "La routine de l'arbitre professionnel hors du parquet.",
+              file: "assets/12.pdf",
+            },
+            {
+              title: "Briefing d'avant-match",
+              desc: "Ce qu'il faut dire à son partenaire dans le vestiaire.",
+              file: "assets/13.pdf",
+            },
+            {
+              title: "La voix comme 2ème outil",
+              desc: "Prévenir la faute avant qu'elle n'arrive grâce à la parole.",
+              file: "assets/22.pdf",
+            },
+            {
+              title: "Posture avant le match",
+              desc: "L'image renvoyée dès l'échauffement.",
+              file: "assets/24.pdf",
+            },
+            {
+              title: "Posture pendant le match",
+              desc: "Body language et assurance sur le terrain.",
+              file: "assets/25.pdf",
+            },
+            {
+              title: "Posture après le match",
+              desc: "Débriefing et sortie de terrain sécurisée.",
+              file: "assets/26.pdf",
+            },
+            {
+              title: "Siffler selon les catégories",
+              desc: "L'adaptation du niveau d'exigence (jeunes vs seniors).",
+              file: "assets/16.pdf",
+            },
+            {
+              title: "Choisir la tonalité du match",
+              desc: "L'importance des premières minutes pour imposer son standard.",
+              file: "assets/17.pdf",
+            },
+          ],
+        },
+      ];
+
+      const infoIntoxData = [
+        {
+          cat: "30 Secondes",
+          items: [
+            {
+              title: "30 secondes / Intox : marcher automatique ?",
+              desc: "Une chute ou un déséquilibre entraîne-t-il forcément un marcher ?",
+              type: "mp4",
+              file: "assets/info-intox/1.mp4",
+            },
+            {
+              title: "30 Secondes : reprise de dribble",
+              desc: "Peut-on retoucher le ballon après une perte de contrôle ?",
+              type: "tiktok",
+              file: "https://www.tiktok.com/@overtime/video/7630250205333474574?q=nba&t=1776599399663",
+            },
+          ],
+        },
+        {
+          cat: "Infos - Intox",
+          items: [
+            {
+              title: "Info / Intox : contact = faute ?",
+              desc: "Tous les contacts ne sont pas des fautes. Voici pourquoi.",
+              type: "mp4",
+              file: "assets/info-intox/2.mp4",
+            },
+          ],
+        },
+      ];
+
+      const videoData = [
+        {
+          cat: "Analyses Pratiques",
+          items: [
+            { title: "Gestuelle & Mécanique", file: "assets/videos/1.mp4" },
+            { title: "Lecture du contact", file: "assets/videos/2.mp4" },
+            {
+              title: "Gestion globale des acteurs",
+              file: "assets/videos/3.mp4",
+            },
+          ],
+        },
+      ];
+
+      function escapeHtml(str) {
+        return String(str || "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
+      }
+
+      function openPdfModal(url, title) {
+        document.getElementById("pdfModalTitle").textContent = title;
+        document.getElementById("pdfModalIframe").src = url;
+        document.getElementById("pdfModal").classList.add("open");
+      }
+
+      function closePdfModal() {
+        document.getElementById("pdfModal").classList.remove("open");
+        document.getElementById("pdfModalIframe").src = "";
+      }
+
+      function getTikTokVideoId(url) {
+        const match = String(url).match(/\/video\/(\d+)/);
+        return match ? match[1] : null;
+      }
+
+      function renderShortMedia(item) {
+        if (item.type === "mp4") {
+          return `
+            <div class="short-video-frame">
+              <video controls preload="metadata" playsinline src="${item.file}"></video>
+            </div>
+          `;
+        }
+
+        if (item.type === "tiktok") {
+          const id = getTikTokVideoId(item.file);
+
+          if (id) {
+            return `
+              <div class="short-video-frame">
+                <iframe
+                  src="https://www.tiktok.com/player/v1/${id}?controls=1&description=0"
+                  allowfullscreen
+                  loading="lazy"
+                  referrerpolicy="strict-origin-when-cross-origin">
+                </iframe>
+              </div>
+            `;
+          }
+
+          return `
+            <div class="short-video-frame" style="display:grid;place-items:center;padding:20px;">
+              <a href="${item.file}" target="_blank" rel="noopener" class="btn btn-outline">Voir sur TikTok</a>
+            </div>
+          `;
+        }
+
+        return "";
+      }
+
+      const pdfContainer = document.getElementById("pdfContainer");
+      let pdfHtml = "";
+      pdfData.forEach((cat) => {
+        pdfHtml += `<h2 class="category-title">${escapeHtml(cat.cat)}</h2><div class="grid-3">`;
+        cat.items.forEach((pdf) => {
+          const safeTitle = pdf.title.replace(/'/g, "\\'");
+          pdfHtml += `
+            <article class="resource-card">
+              <div class="card-body">
+                <span class="badge">${escapeHtml(cat.cat.split(" ")[0])}</span>
+                <h3>${escapeHtml(pdf.title)}</h3>
+                <p class="desc">${escapeHtml(pdf.desc)}</p>
+              </div>
+              <div class="pdf-preview-wrapper">
+                <iframe src="${pdf.file}#toolbar=0" title="${escapeHtml(pdf.title)}" loading="lazy"></iframe>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-outline" onclick="openPdfModal('${pdf.file}', '${safeTitle}')">Agrandir</button>
+                <a class="btn btn-primary" href="${pdf.file}" download>Télécharger</a>
+              </div>
+            </article>`;
+        });
+        pdfHtml += `</div>`;
+      });
+      pdfContainer.innerHTML = pdfHtml;
+
+      const videoContainer = document.getElementById("videoContainer");
+      let vidHtml = "";
+      videoData.forEach((cat) => {
+        vidHtml += `<h2 class="category-title">${escapeHtml(cat.cat)}</h2><div class="grid-2">`;
+        cat.items.forEach((vid) => {
+          vidHtml += `
+            <article class="resource-card">
+              <div class="card-body" style="flex:none; padding-bottom:15px;">
+                <span class="badge">Vidéo</span>
+                <h3>${escapeHtml(vid.title)}</h3>
+              </div>
+              <div class="video-wrapper">
+                <video controls preload="metadata" src="${vid.file}"></video>
+              </div>
+            </article>`;
+        });
+        vidHtml += `</div>`;
+      });
+      videoContainer.innerHTML = vidHtml;
+
+      const infoIntoxContainer = document.getElementById("infoIntoxContainer");
+      let infoIntoxHtml = "";
+      infoIntoxData.forEach((cat) => {
+        infoIntoxHtml += `<h2 class="category-title">${escapeHtml(cat.cat)}</h2><div class="short-grid">`;
+        cat.items.forEach((item) => {
+          infoIntoxHtml += `
+            <article class="short-card">
+              <div class="short-card-head">
+                <span class="badge badge-info-intox">Formats Courts</span>
+                <h3>${escapeHtml(item.title)}</h3>
+                <p>${escapeHtml(item.desc)}</p>
+              </div>
+
+              ${renderShortMedia(item)}
+
+              <div class="short-card-footer">
+                ${
+                  item.type === "mp4"
+                    ? `<a class="btn btn-primary" href="${item.file}" target="_blank" rel="noopener">Voir en grand</a>`
+                    : `<a class="btn btn-primary" href="${item.file}" target="_blank" rel="noopener">Ouvrir TikTok</a>`
+                }
+              </div>
+            </article>`;
+        });
+        infoIntoxHtml += `</div>`;
+      });
+      infoIntoxContainer.innerHTML = infoIntoxHtml;
+
+      window.openPdfModal = openPdfModal;
+      window.closePdfModal = closePdfModal;
+      window.escapeHtml = escapeHtml;
     </script>
 
-    <!-- Script principal (routing + EmailJS + fallback + modal) -->
-    <!-- Script principal (routing + EmailJS + modal) -->
     <script>
-        // Routing + Nav
-        const pages = ['home', 'pdfs', 'videos', 'blog', 'contact'];
-        function navTo(id) {
-            // retire "active" partout
-            pages.forEach(function (p) {
-                var el = document.getElementById(p);
-                if (!el) return;
-                el.classList.remove('active');
+      const pages = ["home", "pdfs", "videos", "info-intox", "blog", "contact"];
+
+      function navTo(id) {
+        pages.forEach((p) => {
+          const el = document.getElementById(p);
+          if (el) el.classList.remove("active");
+        });
+
+        const target = document.getElementById(id);
+        if (target) target.classList.add("active");
+
+        const menu = document.getElementById("menu");
+        if (menu) menu.classList.remove("open");
+
+        document.querySelectorAll("a[data-section]").forEach((a) => {
+          a.classList.toggle("active", a.getAttribute("data-section") === id);
+        });
+
+        if (id !== "home") window.scrollTo({ top: 0, behavior: "smooth" });
+        if (location.hash !== "#" + id)
+          history.replaceState(null, "", "#" + id);
+      }
+
+      const hamburger = document.getElementById("hamburger");
+      const mobileMenu = document.getElementById("menu");
+      const brandLink = document.getElementById("brandLink");
+
+      hamburger.addEventListener("click", (e) => {
+        e.stopPropagation();
+        mobileMenu.classList.toggle("open");
+      });
+
+      document.addEventListener("click", (e) => {
+        const navLink = e.target.closest("a[data-section]");
+        if (navLink) {
+          e.preventDefault();
+          navTo(navLink.getAttribute("data-section"));
+          return;
+        }
+
+        if (
+          mobileMenu.classList.contains("open") &&
+          !mobileMenu.contains(e.target) &&
+          !hamburger.contains(e.target)
+        ) {
+          mobileMenu.classList.remove("open");
+        }
+      });
+
+      brandLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        navTo("home");
+      });
+
+      window.addEventListener("load", () => {
+        const initial = (location.hash || "#home").replace("#", "");
+        navTo(pages.includes(initial) ? initial : "home");
+      });
+
+      window.addEventListener("hashchange", () => {
+        const h = (location.hash || "#home").replace("#", "");
+        if (pages.includes(h)) navTo(h);
+      });
+
+      window.renderVideo = function (url) {
+        if (!url) return "";
+        const safe = String(url).replace(/"/g, "&quot;");
+        const yt = safe.match(
+          /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/,
+        );
+
+        if (yt) {
+          return `<div class="post-media" style="position:relative; padding-bottom:56.25%; height:0;"><iframe style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;" src="https://www.youtube.com/embed/${yt[1]}" allowfullscreen loading="lazy"></iframe></div>`;
+        }
+
+        if (/\.(mp4|mov|webm)(\?.*)?$/i.test(safe)) {
+          return `<div class="post-media"><video width="100%" controls src="${safe}"></video></div>`;
+        }
+
+        return `<p><a href="${safe}" target="_blank" rel="noopener" style="color:var(--primary); text-decoration:underline;">Lien externe</a></p>`;
+      };
+
+      window.updateHomeLatest = function (posts) {
+        const list = document.getElementById("homeLatestList");
+        const ph = document.getElementById("homeLatestPlaceholder");
+
+        if (!posts || !posts.length) {
+          ph.hidden = false;
+          list.hidden = true;
+          return;
+        }
+
+        ph.hidden = true;
+        list.hidden = false;
+        list.innerHTML = posts
+          .slice(0, 3)
+          .map(
+            (p) => `
+              <a href="#blog" data-post-id="${p.id}" style="display:block; padding:15px; background:var(--bg-surface-elevated); border:1px solid var(--border-subtle); border-radius:var(--radius-sm);">
+                <div style="font-weight:700; color:#fff;">${window.escapeHtml(p.subject)}</div>
+                <div style="font-size:0.9rem; color:var(--text-muted); margin-top:5px;">Lire l'analyse et les débats →</div>
+              </a>
+            `,
+          )
+          .join("");
+
+        list.querySelectorAll("a").forEach((a) =>
+          a.addEventListener("click", (e) => {
+            e.preventDefault();
+            navTo("blog");
+            setTimeout(() => {
+              const t = document.getElementById("post-" + a.dataset.postId);
+              if (t) t.scrollIntoView({ behavior: "smooth" });
+            }, 300);
+          }),
+        );
+      };
+
+      document
+        .getElementById("adminLoginBtn")
+        .addEventListener("click", () =>
+          document.getElementById("authModal").classList.add("open"),
+        );
+
+      document
+        .getElementById("authCancel")
+        .addEventListener("click", () =>
+          document.getElementById("authModal").classList.remove("open"),
+        );
+    </script>
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+    <script>
+      window.CONTACT_TO = "charlenecarre.arbitreidf@gmail.com";
+
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const btn = document.getElementById("contactSubmit");
+          const status = document.getElementById("contactStatus");
+
+          btn.disabled = true;
+          btn.textContent = "Envoi...";
+          status.textContent = "";
+          status.className = "text-center";
+
+          try {
+            emailjs.init("NaUOkYDYTpF6_arpE");
+          } catch (e) {}
+
+          const params = {
+            name:
+              document.getElementById("prenom").value +
+              " " +
+              document.getElementById("nom").value,
+            from_name: document.getElementById("prenom").value,
+            reply_to: document.getElementById("email").value,
+            message: document.getElementById("message").value,
+            subject: "Contact — Arbitrage",
+            to_email: window.CONTACT_TO,
+          };
+
+          emailjs
+            .send("service_2ia5bat", "template_pwt63wf", params)
+            .then(() => {
+              status.textContent = "Message envoyé avec succès !";
+              status.classList.add("text-success");
+              this.reset();
+            })
+            .catch(() => {
+              status.textContent = "Erreur lors de l'envoi. Essayez plus tard.";
+              status.classList.add("text-danger");
+            })
+            .finally(() => {
+              btn.disabled = false;
+              btn.textContent = "Envoyer le message";
             });
-            // active la page ciblée
-            pages.forEach(function (p) {
-                var el = document.getElementById(p);
-                if (!el) return;
-                el.classList.toggle('active', p === id);
-            });
-
-            document.body.dataset.theme = (id === 'home') ? 'home' : id;
-            var menu = document.getElementById('menu');
-            if (menu) menu.classList.remove('open');
-            var hb = document.getElementById('hamburger');
-            if (hb) hb.setAttribute('aria-expanded', 'false');
-            if (id !== 'home') window.scrollTo({ top: 0, behavior: 'smooth' });
-            if (location.hash !== '#' + id) history.replaceState(null, '', '#' + id);
-        }
-        function toggleMenu() {
-            var menu = document.getElementById('menu');
-            var btn = document.getElementById('hamburger');
-            var open = !menu.classList.contains('open');
-            menu.classList.toggle('open', open);
-            btn.setAttribute('aria-expanded', String(open));
-        }
-
-        function renderVideo(url) {
-            if (!url) return '';
-            var safe = String(url).replace(/"/g, '&quot;');
-            var y1 = safe.match(/youtu\.be\/([A-Za-z0-9_-]{6,})/);
-            var y2 = safe.match(/[?&]v=([A-Za-z0-9_-]{6,})/);
-            var id = (y1 && y1[1]) || (y2 && y2[1]);
-            if (id) return '<div class="media"><iframe width="100%" height="360" src="https://www.youtube.com/embed/' + id + '" frameborder="0" allowfullscreen loading="lazy"></iframe></div>';
-            if (/\.(mp4|mov|webm)(\?.*)?$/i.test(safe)) return '<div class="media"><video controls preload="metadata" src="' + safe + '"></video></div>';
-            return '<p class="muted">Lien : <a target="_blank" rel="noopener" href="' + safe + '">' + safe + '</a></p>';
-        }
-        function escapeHtml(s) { return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
-        window.renderVideo = renderVideo;
-        window.escapeHtml = escapeHtml;
-
-        // Destinataire fixe pour Contact
-        window.CONTACT_TO = "charlenecarre.arbitreidf@gmail.com";
-
-        // --- Accueil : remplir la liste avec les derniers posts (depuis Firestore) ---
-        function updateHomeLatest(posts) {
-            var list = document.getElementById('homeLatestList');
-            var ph = document.getElementById('homeLatestPlaceholder');
-            if (!list) return;
-
-            if (!posts || !posts.length) {
-                if (ph) { ph.textContent = 'Aucune publication pour le moment.'; ph.hidden = false; }
-                list.hidden = true;
-                list.innerHTML = '';
-                return;
-            }
-
-            var top = posts.slice(0, 5);
-            list.innerHTML = top.map(function (p) {
-                var title = (p.subject || '').toString().trim();
-                var id = (p.id || '').toString();
-                var safe = title.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-                return '<a href="#blog" data-post-id="' + id + '">• ' + safe + '</a>';
-            }).join('');
-
-            if (ph) ph.hidden = true;
-            list.hidden = false;
-
-            // clic → aller au blog puis scroll sur le post
-            Array.prototype.forEach.call(list.querySelectorAll('a[data-post-id]'), function (a) {
-                a.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    var pid = a.getAttribute('data-post-id');
-                    navTo('blog');
-                    scrollToPostWhenReady('post-' + pid, 30, 100);
-                });
-            });
-        }
-        window.updateHomeLatest = updateHomeLatest;
-
-        // Essaie plusieurs fois jusqu'à trouver l'élément (flux temps réel)
-        function scrollToPostWhenReady(targetId, tries, delayMs) {
-            function go() {
-                var el = document.getElementById(targetId);
-                if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); return true; }
-                return false;
-            }
-            if (go()) return;
-            var left = (typeof tries === 'number' ? tries : 30);
-            var wait = (typeof delayMs === 'number' ? delayMs : 100);
-            (function retry(i) {
-                if (go() || i <= 0) return;
-                setTimeout(function () { retry(i - 1); }, wait);
-            })(left);
-        }
-
-        function validateContact() {
-            var email = document.getElementById('email').value.trim();
-            var ok = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
-            if (!ok) { alert('Merci de saisir un email valide.'); return false; }
-            return true;
-        }
-
-        // Modal helpers
-        function openAuthModal() {
-            document.getElementById('authModal').classList.add('open');
-            setTimeout(function () { var em = document.getElementById('authEmail'); if (em) em.focus(); }, 0);
-        }
-        function closeAuthModal() { document.getElementById('authModal').classList.remove('open'); }
-
-        window.addEventListener('load', function () {
-            // Hash routing
-            var initial = (location.hash || '#home').replace('#', '');
-            navTo(pages.indexOf(initial) >= 0 ? initial : 'home');
-            window.addEventListener('hashchange', function () {
-                var h = (location.hash || '#home').replace('#', '');
-                if (pages.indexOf(h) >= 0) navTo(h);
-            });
-
-            document.getElementById('menu').addEventListener('click', function (e) {
-                var a = e.target.closest('a[data-section]');
-                if (!a) return;
-                e.preventDefault();
-                navTo(a.getAttribute('data-section'));
-            });
-            document.getElementById('hamburger').addEventListener('click', toggleMenu);
-            document.addEventListener('click', function (e) {
-                var menu = document.getElementById('menu');
-                var btn = document.getElementById('hamburger');
-                if (!menu.contains(e.target) && !btn.contains(e.target)) {
-                    menu.classList.remove('open');
-                    btn.setAttribute('aria-expanded', 'false');
-                }
-            });
-            document.getElementById('brandLink').addEventListener('click', function () { navTo('home'); });
-
-            // Contact (EmailJS sinon Gmail/mailto)
-            var contactForm = document.getElementById('contactForm');
-            if (contactForm) {
-                contactForm.addEventListener('submit', function (e) {
-                    e.preventDefault();
-                    if (!validateContact()) return;
-
-                    var cfg = window.EMAILJS || {};
-                    var hasKeys = !!(cfg.publicKey && cfg.serviceId && cfg.templateId);
-                    var useEmailJS = !!(cfg.enabled && hasKeys && window.emailjs);
-                    var submitBtn = document.getElementById('contactSubmit');
-                    var statusEl = document.getElementById('contactStatus');
-                    function resetUI() { submitBtn.disabled = false; submitBtn.textContent = 'Envoyer'; }
-
-                    var fullName = (document.getElementById('prenom').value || '') + ' ' + (document.getElementById('nom').value || '');
-                    var replyTo = document.getElementById('email').value || '';
-                    var message = document.getElementById('message').value || '';
-                    var subject = "Contact — Dans l’œil de l’arbitrage";
-
-                    if (useEmailJS) {
-                        submitBtn.disabled = true; submitBtn.textContent = 'Envoi…'; statusEl.textContent = ''; statusEl.className = 'muted';
-                        try { if (!window.__emailjsInited) { window.emailjs.init(cfg.publicKey); window.__emailjsInited = true; } } catch (_) { }
-                        var now = new Date();
-                        var params = {
-                            name: fullName.trim(),
-                            from_name: fullName.trim(),
-                            time: now.toLocaleString('fr-FR'),
-                            message: message,
-                            reply_to: replyTo.trim(),
-                            subject: subject,
-                            to_email: window.CONTACT_TO
-                        };
-                        window.emailjs.send(cfg.serviceId, cfg.templateId, params)
-                            .then(function () { statusEl.textContent = 'Message envoyé, merci !'; statusEl.className = 'ok'; contactForm.reset(); })
-                            .catch(function (err) { console.error('EmailJS error', err); statusEl.textContent = 'Erreur d\'envoi (EmailJS).'; statusEl.className = 'err'; })
-                            .finally(resetUI);
-                    } else {
-                        var body = encodeURIComponent('De : ' + fullName + '%0AEmail : ' + replyTo + '%0A---%0A' + message);
-                        var gmail = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(window.CONTACT_TO) + '&su=' + encodeURIComponent(subject) + '&body=' + body;
-                        var win = window.open(gmail, '_blank');
-                        if (!win || win.closed || typeof win.closed === 'undefined') {
-                            var mailto = 'mailto:' + window.CONTACT_TO + '?subject=' + encodeURIComponent(subject) + '&body=' + body;
-                            window.location.href = mailto;
-                        }
-                        statusEl.textContent = 'Ouverture de votre messagerie…'; statusEl.className = 'ok';
-                    }
-                });
-            }
-
-            // Modal events
-            var loginBtn = document.getElementById('adminLoginBtn');
-            var authCancel = document.getElementById('authCancel');
-            if (loginBtn) loginBtn.addEventListener('click', openAuthModal);
-            if (authCancel) authCancel.addEventListener('click', function () { closeAuthModal(); });
-
-            // ⚠️ Aucun fallback démo ici
         });
     </script>
-    <!-- Script Firebase (module) -->
+
     <script type="module">
-        // Firebase actif
-        const USE_FIREBASE = true;
-        const firebaseConfig = {
-            apiKey: "AIzaSyAeHMJIQ1wJZpPiVG3J2drfg-o9jxz-prI",
-            authDomain: "dans-l-oeil-de-l-arbitrage.firebaseapp.com",
-            projectId: "dans-l-oeil-de-l-arbitrage",
-            storageBucket: "dans-l-oeil-de-l-arbitrage.firebasestorage.app",
-            messagingSenderId: "190199425779",
-            appId: "1:190199425779:web:c993c19cedea1beb80a586"
-        };
-        const ADMIN_UID = "GufRk7GxgHOL1AfaYJpInunPegm2";
-        const EMOJIS = ['👍', '❤️', '👏', '🤔', '❓'];
+      const firebaseConfig = {
+        apiKey: "AIzaSyAeHMJIQ1wJZpPiVG3J2drfg-o9jxz-prI",
+        authDomain: "dans-l-oeil-de-l-arbitrage.firebaseapp.com",
+        projectId: "dans-l-oeil-de-l-arbitrage",
+        storageBucket: "dans-l-oeil-de-l-arbitrage.firebasestorage.app",
+        messagingSenderId: "190199425779",
+        appId: "1:190199425779:web:c993c19cedea1beb80a586",
+      };
 
-        if (USE_FIREBASE) {
-            Promise.all([
-                import('https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js'),
-                import('https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js'),
-                import('https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js')
-            ]).then(([appMod, authMod, fsMod]) => {
-                const { initializeApp } = appMod;
-                const { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, signInAnonymously } = authMod;
-                const { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, onSnapshot, doc, setDoc, getDoc } = fsMod;
+      const ADMIN_UID = "GufRk7GxgHOL1AfaYJpInunPegm2";
+      const EMOJIS = ["👍", "💡", "🏀", "🤔"];
 
-                const app = initializeApp(firebaseConfig);
-                const auth = getAuth(app);
-                const db = getFirestore(app);
-                window.FIREBASE_READY = true;
+      import("https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js").then(
+        (appMod) => {
+          import("https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js").then(
+            (authMod) => {
+              import("https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js").then(
+                (fsMod) => {
+                  const { initializeApp } = appMod;
+                  const {
+                    getAuth,
+                    onAuthStateChanged,
+                    signInWithEmailAndPassword,
+                    signOut,
+                    signInAnonymously,
+                  } = authMod;
+                  const {
+                    getFirestore,
+                    collection,
+                    addDoc,
+                    serverTimestamp,
+                    query,
+                    orderBy,
+                    onSnapshot,
+                    doc,
+                    setDoc,
+                    getDoc,
+                  } = fsMod;
 
-                // UI refs
-                const composer = document.getElementById('composer');
-                const loginBtn = document.getElementById('adminLoginBtn');
-                const logoutBtn = document.getElementById('adminLogoutBtn');
-                const hint = document.getElementById('authHint');
-                const publishBtn = document.getElementById('publishBtn');
-                const feedWrap = document.getElementById('feed');
+                  const app = initializeApp(firebaseConfig);
+                  const auth = getAuth(app);
+                  const db = getFirestore(app);
 
-                function updateUI(user) {
-                    const isAdmin = !!(user && user.uid === ADMIN_UID);
-                    if (composer) composer.style.display = isAdmin ? 'grid' : 'none';
-                    if (loginBtn) loginBtn.style.display = isAdmin ? 'none' : '';
-                    if (logoutBtn) logoutBtn.style.display = isAdmin ? '' : 'none';
-                    if (hint) hint.textContent = user ? (isAdmin ? 'Connecté (admin)' : 'Connecté') : 'Non connecté';
-                }
-
-                onAuthStateChanged(auth, async (user) => {
-                    if (!user) { try { await signInAnonymously(auth); } catch (_) { } }
-                    updateUI(auth.currentUser);
-                });
-
-                // Connexion via modal
-                const authModal = document.getElementById('authModal');
-                const authEmail = document.getElementById('authEmail');
-                const authPass = document.getElementById('authPass');
-                const authSubmitBtn = document.getElementById('authSubmit');
-                const authCancelBtn = document.getElementById('authCancel');
-
-                if (authSubmitBtn) authSubmitBtn.addEventListener('click', async function () {
-                    const email = (authEmail && authEmail.value || '').trim();
-                    const pass = (authPass && authPass.value || '').trim();
-                    if (!email || !pass) { alert('Renseigne email et mot de passe.'); return; }
-                    try {
-                        await signInWithEmailAndPassword(auth, email, pass);
-                        if (authModal) authModal.classList.remove('open');
-                    } catch (e) {
-                        alert('Connexion impossible: ' + (e && e.message ? e.message : e));
+                  onAuthStateChanged(auth, async (user) => {
+                    if (!user) {
+                      try {
+                        await signInAnonymously(auth);
+                      } catch (_) {}
                     }
-                });
-                if (authCancelBtn) authCancelBtn.addEventListener('click', function () { if (authModal) authModal.classList.remove('open'); });
-                if (logoutBtn) logoutBtn.addEventListener('click', async () => { try { await signOut(auth); } catch (_) { } });
 
-                // Posts temps réel
-                const postsRef = collection(db, 'posts');
-                const qPosts = query(postsRef, orderBy('createdAt', 'desc'));
-                onSnapshot(qPosts, (snap) => {
-                    const posts = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-                    renderFeedFS(posts);
-                    // ➜ met à jour la liste d'accueil
-                    if (window.updateHomeLatest) window.updateHomeLatest(posts);
-                });
+                    const isAdmin = user && user.uid === ADMIN_UID;
+                    document.getElementById("composer").style.display = isAdmin
+                      ? "flex"
+                      : "none";
+                    document.getElementById("adminLoginBtn").style.display =
+                      isAdmin ? "none" : "inline-flex";
+                    document.getElementById("adminLogoutBtn").style.display =
+                      isAdmin ? "inline-flex" : "none";
+                    document.getElementById("authHint").innerHTML = isAdmin
+                      ? '<span style="color:var(--success)">👤 Connecté (Expert)</span>'
+                      : "👤 Mode Invité (Lecture seule)";
+                  });
 
-                if (publishBtn) publishBtn.addEventListener('click', async () => {
-                    const user = auth.currentUser;
-                    if (!user || user.uid !== ADMIN_UID) { alert('Réservé à l’administrateur'); return; }
-                    const subject = document.getElementById('subject').value.trim();
-                    const video = document.getElementById('videoUrl').value.trim();
-                    const subtext = document.getElementById('subtext').value.trim();
-                    if (!subject) { alert('Ajoutez un sujet'); return; }
-                    await addDoc(postsRef, { subject, video, subtext, createdAt: serverTimestamp(), authorUid: user.uid });
-                    document.getElementById('subject').value = '';
-                    document.getElementById('videoUrl').value = '';
-                    document.getElementById('subtext').value = '';
-                });
-
-                function renderFeedFS(posts) {
-                    feedWrap.innerHTML = '';
-                    if (!posts.length) {
-                        const d = document.createElement('div');
-                        d.className = 'post muted';
-                        d.textContent = 'Aucun post pour le moment.';
-                        feedWrap.appendChild(d);
-                        return;
-                    }
-                    posts.forEach(function (p) {
-                        const el = document.createElement('article');
-                        el.className = 'post';
-                        el.id = 'post-' + p.id;
-                        el.innerHTML =
-                            '<header><h3>' + window.escapeHtml(p.subject || '') + '</h3></header>' +
-                            (p.subtext ? '<p class="lead-subtext">' + window.escapeHtml(p.subtext) + '</p>' : '') +
-                            window.renderVideo(p.video) +
-                            '<div class="reactions">' +
-                            EMOJIS.map(function (e) {
-                                return '<button class="reaction" data-emoji="' + e + '" aria-pressed="false">' + e + '<span class="count"></span></button>';
-                            }).join('') +
-                            '</div>' +
-                            '<div class="comments" id="comments-' + p.id + '"></div>' +
-                            '<div class="comment"><form data-post="' + p.id + '"><input id="cinput-' + p.id + '" placeholder="Écrire une réponse…" /><button class="btn" type="submit">Envoyer</button></form></div>';
-                        feedWrap.appendChild(el);
-
-                        // Commentaires (temps réel)
-                        const cRef = collection(db, 'posts', p.id, 'comments');
-                        const qy = query(cRef, orderBy('createdAt', 'asc'));
-                        onSnapshot(qy, function (snap) {
-                            const box = document.getElementById('comments-' + p.id);
-                            box.innerHTML = snap.docs.map(function (d) {
-                                return '<div class="comment">' + window.escapeHtml((d.data() && d.data().text) || '') + '</div>';
-                            }).join('');
-                        });
-
-                        // Réactions (compteurs + état sélection en temps réel)
-                        const rRef = collection(db, 'posts', p.id, 'reactions');
-                        onSnapshot(rRef, function (rsnap) {
-                            const counts = {};
-                            EMOJIS.forEach(e => counts[e] = 0);
-                            let myEmoji = null;
-
-                            rsnap.forEach(function (rdoc) {
-                                const data = rdoc.data();
-                                if (data && data.emoji && counts[data.emoji] !== undefined) {
-                                    counts[data.emoji] += 1;
-                                    if (auth.currentUser && rdoc.id === auth.currentUser.uid) {
-                                        myEmoji = data.emoji;
-                                    }
-                                }
-                            });
-
-                            const container = el.querySelector('.reactions');
-                            if (!container) return;
-
-                            EMOJIS.forEach(function (e) {
-                                const btn = container.querySelector('button[data-emoji="' + e + '"]');
-                                if (!btn) return;
-                                const c = counts[e] || 0;
-                                const span = btn.querySelector('.count');
-                                if (span) span.textContent = c > 0 ? String(c) : '';
-                                btn.classList.toggle('has-count', c > 0);
-
-                                const isMine = (myEmoji === e);
-                                btn.classList.toggle('active', isMine);
-                                btn.setAttribute('aria-pressed', isMine ? 'true' : 'false');
-                            });
-                        });
+                  document
+                    .getElementById("authSubmit")
+                    .addEventListener("click", async () => {
+                      try {
+                        await signInWithEmailAndPassword(
+                          auth,
+                          document.getElementById("authEmail").value,
+                          document.getElementById("authPass").value,
+                        );
+                        document
+                          .getElementById("authModal")
+                          .classList.remove("open");
+                      } catch (e) {
+                        alert("Identifiants incorrects.");
+                      }
                     });
-                }
 
-                // Clic réactions (écriture + feedback optimiste)
-                feedWrap.addEventListener('click', async function (e) {
-                    const btn = e.target.closest('button.reaction'); if (!btn) return;
-                    const card = e.target.closest('.post'); if (!card) return;
-                    const form = card.querySelector('.comment form'); if (!form) return;
-                    const postId = form.getAttribute('data-post'); if (!postId) return;
-                    const emoji = btn.getAttribute('data-emoji');
-                    const user = auth.currentUser; if (!user) return;
+                  document
+                    .getElementById("adminLogoutBtn")
+                    .addEventListener("click", () => signOut(auth));
 
-                    const rdocRef = doc(db, 'posts', postId, 'reactions', user.uid);
-                    const snap = await getDoc(rdocRef);
-                    if (snap.exists() && snap.data() && snap.data().emoji === emoji) {
-                        await setDoc(rdocRef, { emoji: null, updatedAt: serverTimestamp() }, { merge: true });
-                    } else {
-                        await setDoc(rdocRef, { emoji: emoji, updatedAt: serverTimestamp() }, { merge: true });
-                    }
+                  const postsRef = collection(db, "posts");
+                  onSnapshot(
+                    query(postsRef, orderBy("createdAt", "desc")),
+                    (snap) => {
+                      const posts = snap.docs.map((d) => ({
+                        id: d.id,
+                        ...d.data(),
+                      }));
+                      if (window.updateHomeLatest)
+                        window.updateHomeLatest(posts);
+                      renderFeedFS(posts);
+                    },
+                  );
 
-                    // Feedback optimiste
-                    const container = card.querySelector('.reactions');
-                    if (container) {
-                        container.querySelectorAll('.reaction').forEach(function (b) {
-                            const isThis = (b === btn);
-                            b.classList.toggle('active', isThis);
-                            b.setAttribute('aria-pressed', isThis ? 'true' : 'false');
-                        });
-                    }
-                });
+                  document
+                    .getElementById("publishBtn")
+                    .addEventListener("click", async () => {
+                      if (
+                        !auth.currentUser ||
+                        auth.currentUser.uid !== ADMIN_UID
+                      )
+                        return;
 
-                // Envoi commentaire
-                feedWrap.addEventListener('submit', async function (e) {
-                    const form = e.target.closest('form[data-post]'); if (!form) return;
-                    e.preventDefault();
-                    const postId = form.getAttribute('data-post');
-                    const input = document.getElementById('cinput-' + postId);
-                    const text = (input && input.value ? input.value.trim() : ''); if (!text) return;
-                    const col = collection(db, 'posts', postId, 'comments');
-                    await addDoc(col, { text: text, createdAt: serverTimestamp() });
-                    input.value = '';
-                });
+                      const subject = document
+                        .getElementById("subject")
+                        .value.trim();
+                      if (!subject) return alert("Le titre est requis.");
 
-            }).catch((err) => {
-                console.error('Firebase import error', err);
-                const hint = document.getElementById('authHint');
-                if (hint) hint.textContent = "Erreur d'import Firebase";
-            });
-        }
+                      await addDoc(postsRef, {
+                        subject,
+                        video: document.getElementById("videoUrl").value,
+                        subtext: document.getElementById("subtext").value,
+                        createdAt: serverTimestamp(),
+                        authorUid: auth.currentUser.uid,
+                      });
+
+                      document.getElementById("subject").value = "";
+                      document.getElementById("videoUrl").value = "";
+                      document.getElementById("subtext").value = "";
+                    });
+
+                  function renderFeedFS(posts) {
+                    const feed = document.getElementById("feed");
+                    feed.innerHTML = "";
+
+                    posts.forEach((p) => {
+                      const el = document.createElement("article");
+                      el.className = "post";
+                      el.id = "post-" + p.id;
+                      el.innerHTML = `
+                        <div class="post-header">
+                          <span class="badge" style="margin-bottom:10px;">Analyse Pratique</span>
+                          <h3>${window.escapeHtml(p.subject)}</h3>
+                        </div>
+                        ${
+                          p.subtext
+                            ? `<p class="post-desc">${window.escapeHtml(p.subtext)}</p>`
+                            : ""
+                        }
+                        ${window.renderVideo(p.video)}
+                        <div class="reactions">
+                          ${EMOJIS.map(
+                            (e) =>
+                              `<button class="reaction" data-emoji="${e}">${e} <span class="count"></span></button>`,
+                          ).join("")}
+                        </div>
+                        <div class="comments" id="comments-${p.id}"></div>
+                        <form class="comment-form" data-post="${p.id}">
+                          <input id="cinput-${p.id}" placeholder="Ajouter une observation..." required />
+                          <button class="btn btn-outline" type="submit">Soumettre</button>
+                        </form>
+                      `;
+                      feed.appendChild(el);
+
+                      onSnapshot(
+                        query(
+                          collection(db, "posts", p.id, "comments"),
+                          orderBy("createdAt", "asc"),
+                        ),
+                        (snap) => {
+                          document.getElementById(
+                            `comments-${p.id}`,
+                          ).innerHTML = snap.docs
+                            .map(
+                              (d) =>
+                                `<div class="comment">${window.escapeHtml(d.data().text)}</div>`,
+                            )
+                            .join("");
+                        },
+                      );
+
+                      onSnapshot(
+                        collection(db, "posts", p.id, "reactions"),
+                        (rsnap) => {
+                          const counts = {};
+                          EMOJIS.forEach((e) => (counts[e] = 0));
+                          let myEmoji = null;
+
+                          rsnap.forEach((rdoc) => {
+                            const d = rdoc.data();
+                            if (d.emoji) {
+                              counts[d.emoji]++;
+                              if (
+                                auth.currentUser &&
+                                rdoc.id === auth.currentUser.uid
+                              ) {
+                                myEmoji = d.emoji;
+                              }
+                            }
+                          });
+
+                          EMOJIS.forEach((e) => {
+                            const btn = el.querySelector(
+                              `button[data-emoji="${e}"]`,
+                            );
+                            if (!btn) return;
+                            const countSpan = btn.querySelector(".count");
+                            countSpan.textContent =
+                              counts[e] > 0 ? counts[e] : "";
+                            btn.classList.toggle("active", myEmoji === e);
+                          });
+                        },
+                      );
+                    });
+                  }
+
+                  document
+                    .getElementById("feed")
+                    .addEventListener("click", async (e) => {
+                      const btn = e.target.closest(".reaction");
+                      if (!btn || !auth.currentUser) return;
+
+                      const postId = btn
+                        .closest(".post")
+                        .id.replace("post-", "");
+                      const rRef = doc(
+                        db,
+                        "posts",
+                        postId,
+                        "reactions",
+                        auth.currentUser.uid,
+                      );
+                      const snap = await getDoc(rRef);
+
+                      await setDoc(
+                        rRef,
+                        {
+                          emoji:
+                            snap.exists() &&
+                            snap.data().emoji === btn.dataset.emoji
+                              ? null
+                              : btn.dataset.emoji,
+                        },
+                        { merge: true },
+                      );
+                    });
+
+                  document
+                    .getElementById("feed")
+                    .addEventListener("submit", async (e) => {
+                      e.preventDefault();
+                      const form = e.target.closest("form");
+                      const postId = form.dataset.post;
+                      const input = document.getElementById("cinput-" + postId);
+
+                      if (!input.value.trim() || !auth.currentUser) return;
+
+                      await addDoc(
+                        collection(db, "posts", postId, "comments"),
+                        {
+                          text: input.value.trim(),
+                          createdAt: serverTimestamp(),
+                        },
+                      );
+
+                      input.value = "";
+                    });
+                },
+              );
+            },
+          );
+        },
+      );
     </script>
-
-
-</body>
-
+  </body>
 </html>
